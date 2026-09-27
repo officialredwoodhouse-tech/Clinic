@@ -37,7 +37,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
           >
             <div className="relative mx-auto max-w-md rounded-3xl overflow-hidden shadow-2xl shadow-[#183127]/15 border border-[#E3D9C9] bg-[#EFE8DD] aspect-[3/4]">
               <img
-                src="/src/assets/images/doctor_aryan_portrait_1790483871556.jpg"
+                src="/src/assets/images/doctor_aryan_portrait_1790488574021.jpg"
                 alt="Dr Aryan - Dentist and Dental Surgeon in Chandigarh"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

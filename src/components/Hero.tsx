@@ -133,7 +133,7 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
             {/* Visual Container */}
             <div className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl shadow-[#192B22]/15 border border-[#EDE4D5] aspect-[4/3] lg:aspect-[16/14]">
               <img
-                src="/src/assets/images/hero_luxury_dental_clinic_1790483856220.jpg"
+                src="/src/assets/images/hero_luxury_dental_clinic_1790488557370.jpg"
                 alt="Dr Aryan Modern Dental Clinic Suite Chandigarh"
                 className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
                 referrerPolicy="no-referrer"
