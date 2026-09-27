@@ -1,4 +1,5 @@
 import { ClinicConfig, ServiceDetail, GalleryItem, TestimonialItem, FAQItem } from '../types/clinic';
+import { heroClinicImg, doctorAryanImg, smileMakeoverImg, dentalTechImg } from '../assets/images';
 
 export const DEFAULT_CLINIC_CONFIG: ClinicConfig = {
   clinicName: 'Dr Aryan Dental & Aesthetic Care',

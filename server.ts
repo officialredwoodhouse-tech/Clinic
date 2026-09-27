@@ -272,6 +272,18 @@ Submitted at: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
 
 // Production or Dev Middleware
 async function startServer() {
+  // Explicit static file routes for image assets (guarantees image delivery in both Dev & Prod)
+  const imagesDir = path.resolve(__dirname, 'src/assets/images');
+  const publicImagesDir = path.resolve(__dirname, 'public/assets/images');
+
+  if (fs.existsSync(imagesDir)) {
+    app.use('/src/assets/images', express.static(imagesDir));
+  }
+  if (fs.existsSync(publicImagesDir)) {
+    app.use('/assets/images', express.static(publicImagesDir));
+    app.use('/images', express.static(publicImagesDir));
+  }
+
   const isProd = process.env.NODE_ENV === 'production';
 
   if (!isProd) {

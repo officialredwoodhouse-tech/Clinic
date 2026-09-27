@@ -3,6 +3,7 @@ import { Calendar, MessageSquare, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
 import { smoothEasing } from './SectionTransition';
+import { smileMakeoverImg } from '../assets/images';
 
 interface FeaturedSmileProps {
   config: ClinicConfig;
@@ -35,7 +36,7 @@ export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBook
             >
               <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border border-[#E1D5C2] bg-[#EFE8DD]">
                 <img
-                  src="/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg"
+                  src={smileMakeoverImg}
                   alt="Transform Your Smile - Dr Aryan Dental Chandigarh"
                   className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
                   referrerPolicy="no-referrer"
