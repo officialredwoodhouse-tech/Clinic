@@ -138,49 +138,80 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
 
     setIsLoading(true);
 
+    // Format clean WhatsApp text with all filled details
+    const cleanWhatsApp = (whatsapp && whatsapp.trim()) || phone.trim();
+    const formattedWhatsAppText = `🦷 *NEW APPOINTMENT REQUEST*
+
+*Patient Name:* ${fullName.trim()}
+*Phone:* ${phone.trim()}
+*WhatsApp:* ${cleanWhatsApp}
+*Email:* ${email.trim()}
+*Preferred Date:* ${preferredDate}
+*Preferred Time:* ${preferredTime}
+*Treatment:* ${treatment}
+*Message:* ${message ? message.trim() : 'None'}
+${attachmentName ? `*Attachment:* ${attachmentName}` : ''}
+
+_Hi Dr Aryan, I have submitted my appointment details above. Please confirm my slot._`;
+
+    const encodedText = encodeURIComponent(formattedWhatsAppText);
+    const targetWhatsAppUrl = `https://wa.me/${config.whatsappNumber}?text=${encodedText}`;
+
+    // Also attempt background recording to API if available (non-blocking)
     try {
-      const response = await fetch('/api/appointments', {
+      fetch('/api/appointments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           fullName,
           phone,
-          whatsapp: whatsapp || phone,
+          whatsapp: cleanWhatsApp,
           email,
           preferredDate,
           preferredTime,
           treatment,
           message,
           attachmentName,
-          honeypot, // hidden spam trap
+          honeypot,
         }),
+      }).catch(() => {
+        // Silently continue so WhatsApp redirect is never blocked even if deployed statically
       });
-
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.message || 'Failed to submit appointment request.');
-      }
-
-      setCreatedAppointment(data.appointment);
-      setWhatsappConfirmUrl(data.clinicWhatsAppUrl);
-
-      // Reset form fields
-      setFullName('');
-      setPhone('');
-      setWhatsapp('');
-      setEmail('');
-      setPreferredDate('');
-      setPreferredTime('');
-      setMessage('');
-      setAttachmentName('');
-      setAgreementChecked(false);
-      if (onClearPreselected) onClearPreselected();
-    } catch (err: any) {
-      setErrorMessage(err.message || 'An error occurred while connecting to the clinic server.');
-    } finally {
-      setIsLoading(false);
+    } catch (e) {
+      // Continue
     }
+
+    setCreatedAppointment({
+      id: `apt-${Date.now().toString(36)}`,
+      fullName: fullName.trim(),
+      phone: phone.trim(),
+      whatsapp: cleanWhatsApp,
+      email: email.trim(),
+      preferredDate,
+      preferredTime,
+      treatment,
+      message,
+      attachmentName,
+      createdAt: new Date().toISOString(),
+      status: 'pending',
+    });
+    setWhatsappConfirmUrl(targetWhatsAppUrl);
+
+    // Reset fields
+    setFullName('');
+    setPhone('');
+    setWhatsapp('');
+    setEmail('');
+    setPreferredDate('');
+    setPreferredTime('');
+    setMessage('');
+    setAttachmentName('');
+    setAgreementChecked(false);
+    if (onClearPreselected) onClearPreselected();
+    setIsLoading(false);
+
+    // Seamlessly redirect the client to WhatsApp with all filled details
+    window.location.href = targetWhatsAppUrl;
   };
 
   return (
@@ -423,22 +454,25 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
             {/* Submit Button & Security Note */}
             <div className="pt-4 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2 text-xs text-slate-500">
-                <Lock className="w-3.5 h-3.5 text-slate-400" />
-                <span>Your medical information is kept strictly confidential.</span>
+                <MessageSquare className="w-4 h-4 text-teal-600 shrink-0" />
+                <span>Redirects to WhatsApp with your details pre-filled. Just tap Send!</span>
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-9 py-4 text-xs font-bold uppercase tracking-wider text-white bg-slate-900 hover:bg-teal-900 rounded-2xl shadow-lg shadow-slate-900/10 hover:shadow-teal-900/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-98"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-9 py-4 text-xs font-bold uppercase tracking-wider text-white bg-slate-900 hover:bg-teal-900 rounded-2xl shadow-lg shadow-slate-900/10 hover:shadow-teal-900/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-98"
               >
                 {isLoading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin text-teal-300" />
-                    <span>Processing Request...</span>
+                    <span>Processing...</span>
                   </>
                 ) : (
-                  <span>REQUEST APPOINTMENT</span>
+                  <>
+                    <Calendar className="w-4 h-4 text-teal-300" />
+                    <span>Book Now</span>
+                  </>
                 )}
               </button>
             </div>

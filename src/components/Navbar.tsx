@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, Calendar, Phone, Menu, X, Settings } from 'lucide-react';
+import { MessageSquare, Calendar, Phone, Menu, X } from 'lucide-react';
 import { ClinicConfig } from '../types/clinic';
 
 interface NavbarProps {
   config: ClinicConfig;
   onOpenBooking: (treatment?: string) => void;
-  onOpenSettings: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking, onOpenSettings }) => {
+export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -92,15 +91,6 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking, onOpenSet
                 <Calendar className="w-3.5 h-3.5 text-teal-300" />
                 <span>Book Appointment</span>
               </button>
-
-              <button
-                type="button"
-                onClick={onOpenSettings}
-                title="Clinic Desk & Settings"
-                className="p-2 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100/80 transition-colors"
-              >
-                <Settings className="w-4 h-4" />
-              </button>
             </div>
 
             {/* Mobile Menu & Quick Settings Button */}
@@ -175,17 +165,6 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking, onOpenSet
               >
                 <Calendar className="w-4 h-4 text-teal-300" />
                 Book an Appointment
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenSettings();
-                }}
-                className="w-full flex items-center justify-center gap-2 py-2 text-xs font-medium text-slate-500 hover:text-slate-800"
-              >
-                <Settings className="w-3.5 h-3.5" />
-                Clinic Admin & Configuration
               </button>
             </div>
           </div>

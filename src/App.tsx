@@ -23,12 +23,10 @@ import { ContactSection } from './components/ContactSection';
 import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
-import { ClinicSettingsModal } from './components/ClinicSettingsModal';
 import { LegalModal } from './components/LegalModals';
 
 export default function App() {
   const [config, setConfig] = useState<ClinicConfig>(DEFAULT_CLINIC_CONFIG);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
   const [preselectedTreatment, setPreselectedTreatment] = useState<string | undefined>(undefined);
 
@@ -62,7 +60,6 @@ export default function App() {
       <Navbar
         config={config}
         onOpenBooking={() => handleOpenBooking()}
-        onOpenSettings={() => setIsSettingsOpen(true)}
       />
 
       {/* Main Page Flow */}
@@ -80,7 +77,6 @@ export default function App() {
         <AboutSection
           config={config}
           onOpenBooking={() => handleOpenBooking()}
-          onOpenSettings={() => setIsSettingsOpen(true)}
         />
 
         {/* 4. Complete Services (12 Services + Dynamic Detail Modal) */}
@@ -145,14 +141,6 @@ export default function App() {
       <FloatingActions
         config={config}
         onOpenBooking={() => handleOpenBooking()}
-      />
-
-      {/* Clinic Settings & Front Desk Admin Modal */}
-      <ClinicSettingsModal
-        isOpen={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-        config={config}
-        onUpdateConfig={(updated) => setConfig(updated)}
       />
 
       {/* Legal Modals (Privacy & Terms) */}

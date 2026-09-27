@@ -5,10 +5,9 @@ import { ClinicConfig } from '../types/clinic';
 interface AboutSectionProps {
   config: ClinicConfig;
   onOpenBooking: () => void;
-  onOpenSettings: () => void;
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBooking, onOpenSettings }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBooking }) => {
   const [showFullBio, setShowFullBio] = useState(false);
 
   return (
@@ -57,7 +56,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
                 </div>
               </div>
 
-              {/* Editable Credential Slots (Prompt requirement: Do not invent degrees or awards; provide clear editable slots) */}
+              {/* Credential Slots */}
               <div className="mt-4 pt-4 border-t border-slate-200/60 text-xs space-y-2">
                 <div className="flex items-start justify-between text-slate-600">
                   <span className="text-slate-400">Clinical Focus</span>
@@ -66,16 +65,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
                 <div className="flex items-start justify-between text-slate-600">
                   <span className="text-slate-400">Consultation</span>
                   <span className="font-medium text-slate-800 text-right">By Prior Appointment</span>
-                </div>
-                <div className="pt-2 flex items-center justify-between">
-                  <span className="text-[11px] text-slate-400 italic">Credentials can be updated in Admin</span>
-                  <button
-                    type="button"
-                    onClick={onOpenSettings}
-                    className="text-[11px] font-semibold text-teal-700 hover:text-teal-900 hover:underline"
-                  >
-                    Edit Info
-                  </button>
                 </div>
               </div>
             </div>
