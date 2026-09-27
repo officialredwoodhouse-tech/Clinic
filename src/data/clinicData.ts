@@ -7,8 +7,8 @@ export const DEFAULT_CLINIC_CONFIG: ClinicConfig = {
   doctorTitle: 'BDS, MDS - Aesthetic Dentist & Oral Rehabilitation Specialist',
   doctorRole: 'Dental Surgeon & Clinical Director',
   clinicEmail: 'care@drxyzdental.in',
-  clinicPhone: '+91 62306 29383',
-  whatsappNumber: '916230629383',
+  clinicPhone: '+91 98152 74390',
+  whatsappNumber: '919815274390',
   clinicAddress: 'SCO 142-143, Madhya Marg, Sector 9-C',
   city: 'Chandigarh',
   state: 'India',
@@ -706,7 +706,7 @@ export const WHY_CHOOSE_POINTS = [
 export const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'How do I book an appointment?',
-    answer: 'You can submit an appointment request right here on our website using the Book Appointment form, contact us directly on WhatsApp (+91 62306 29383), or call our clinic desk. Our front-desk coordinator will reach out promptly to confirm your preferred time slot.'
+    answer: 'You can submit an appointment request right here on our website using the Book Appointment form, contact us directly on WhatsApp (+91 98152 74390), or call our clinic desk. Our front-desk coordinator will reach out promptly to confirm your preferred time slot.'
   },
   {
     question: 'What should I bring to my first appointment?',
@@ -730,6 +730,6 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     question: 'How can I contact the clinic?',
-    answer: 'You can reach us by phone at +91 62306 29383, via WhatsApp for swift messaging, or by email at care@drxyzdental.in. Our clinic is centrally located in Sector 9-C, Madhya Marg, Chandigarh with convenient parking.'
+    answer: 'You can reach us by phone at +91 98152 74390, via WhatsApp for swift messaging, or by email at care@drxyzdental.in. Our clinic is centrally located in Sector 9-C, Madhya Marg, Chandigarh with convenient parking.'
   }
 ];
