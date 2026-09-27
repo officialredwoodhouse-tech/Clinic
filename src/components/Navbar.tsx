@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MessageSquare, Calendar, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
+import { Logo } from './Logo';
 
 interface NavbarProps {
   config: ClinicConfig;
@@ -72,7 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
   };
 
   const whatsappDirectUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Dr Pallavi, I would like to know more about your dental services and book an appointment.'
+    'Hi Dr XYZ, I would like to know more about your dental services and book an appointment.'
   )}`;
 
   return (
@@ -92,18 +93,13 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Zone 1: Single text element wordmark */}
+            {/* Zone 1: Bespoke Emblem & Wordmark */}
             <a
               href="#hero"
               onClick={(e) => handleNavClick(e, '#hero')}
-              className="group flex flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#203D32] rounded-sm"
+              className="group flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#203D32] rounded-md"
             >
-              <span className="text-xl sm:text-2xl font-serif font-bold tracking-tight text-[#1C2C24] group-hover:text-[#284D3F] transition-colors">
-                DR ARYAN
-              </span>
-              <span className="text-[10px] tracking-[0.24em] uppercase font-semibold text-[#8C6D3B] -mt-0.5">
-                Dental & Aesthetic Care
-              </span>
+              <Logo size="md" variant="light" />
             </a>
 
             {/* Zone 2: 4-8 clean text navigation links with smooth animated indicator */}
@@ -197,10 +193,7 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
             >
               <div>
                 <div className="flex items-center justify-between pb-6 border-b border-[#EADFCF]">
-                  <div>
-                    <span className="font-serif text-lg font-bold text-[#183127]">DR ARYAN</span>
-                    <p className="text-[10px] tracking-wider uppercase font-semibold text-[#8C6D3B]">Dental & Aesthetic Care</p>
-                  </div>
+                  <Logo size="sm" variant="light" />
                   <button
                     type="button"
                     onClick={() => setMobileMenuOpen(false)}

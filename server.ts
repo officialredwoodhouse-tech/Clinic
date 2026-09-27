@@ -14,11 +14,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // In-memory data storage with sample seeded requests
 let clinicConfig = {
-  clinicName: 'Dr Pallavi Dental & Aesthetic Care',
-  doctorName: 'Dr Pallavi',
+  clinicName: 'Dr XYZ Dental & Aesthetic Care',
+  doctorName: 'Dr XYZ',
   doctorTitle: 'BDS, MDS - Aesthetic Dentist & Oral Rehabilitation Specialist',
   doctorRole: 'Dental Surgeon & Clinical Director',
-  clinicEmail: process.env.CLINIC_EMAIL || 'care@drpallavidental.in',
+  clinicEmail: process.env.CLINIC_EMAIL || 'care@drxyzdental.in',
   clinicPhone: process.env.CLINIC_PHONE || '+91 62306 29383',
   whatsappNumber: process.env.WHATSAPP_NUMBER || '916230629383',
   clinicAddress: process.env.CLINIC_ADDRESS || 'SCO 142-143, Madhya Marg, Sector 9-C',
@@ -31,8 +31,8 @@ let clinicConfig = {
     saturday: 'Saturday: 09:30 AM – 08:00 PM',
     sunday: 'Sunday: 10:00 AM – 02:00 PM (By Appointment)',
   },
-  instagramUrl: 'https://instagram.com/drpallavi_dental',
-  facebookUrl: 'https://facebook.com/drpallavidental',
+  instagramUrl: 'https://instagram.com/drxyz_dental',
+  facebookUrl: 'https://facebook.com/drxyzdental',
 };
 
 interface AppointmentRecord {
@@ -304,7 +304,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Dr Pallavi Dental Clinic Server listening on http://0.0.0.0:${PORT}`);
+    console.log(`Dr XYZ Dental Clinic Server listening on http://0.0.0.0:${PORT}`);
   });
 }
 

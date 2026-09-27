@@ -5,11 +5,13 @@ import dentalTechImg from './modern_dental_technology_1790492728261.jpg';
 
 // Aliases for compatibility
 const doctorAryanImg = doctorPallaviImg;
+const doctorXyzImg = doctorPallaviImg;
 
 export {
   heroClinicImg,
   doctorPallaviImg,
   doctorAryanImg,
+  doctorXyzImg,
   smileMakeoverImg,
   dentalTechImg,
 };

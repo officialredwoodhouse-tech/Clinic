@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Phone, MapPin } from 'lucide-react';
 import { ClinicConfig } from '../types/clinic';
+import { Logo } from './Logo';
 
 interface FooterProps {
   config: ClinicConfig;
@@ -36,12 +37,9 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-[#DDD0BD]">
           {/* Brand Info */}
           <div className="lg:col-span-2 text-left">
-            <span className="text-2xl font-serif font-bold tracking-tight text-[#183127] block">
-              DR ARYAN
-            </span>
-            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#8C6D3B] block -mt-0.5 mb-4">
-              Dental & Aesthetic Care
-            </span>
+            <div className="mb-4">
+              <Logo size="lg" variant="light" />
+            </div>
 
             <p className="text-xs sm:text-sm text-[#4E5A51] leading-relaxed max-w-sm mb-6">
               Advanced dental care in Chandigarh, combining clinical expertise, modern technology and a comfortable patient-first experience.
@@ -66,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-[#4E5A51]">
               <li><a href="#hero" onClick={(e) => handleNavClick(e, '#hero')} className="hover:text-[#183127] transition-colors">Home</a></li>
-              <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-[#183127] transition-colors">About Dr Pallavi</a></li>
+              <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-[#183127] transition-colors">About Dr XYZ</a></li>
               <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-[#183127] transition-colors">Services</a></li>
               <li><a href="#technology" onClick={(e) => handleNavClick(e, '#technology')} className="hover:text-[#183127] transition-colors">Technology</a></li>
               <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')} className="hover:text-[#183127] transition-colors">Smile Gallery</a></li>

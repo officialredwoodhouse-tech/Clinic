@@ -73,7 +73,7 @@ export default function App() {
         {/* 2. Trust Bar */}
         <TrustBar />
 
-        {/* 3. About Dr Pallavi */}
+        {/* 3. About Dr XYZ */}
         <AboutSection
           config={config}
           onOpenBooking={() => handleOpenBooking()}
@@ -103,7 +103,7 @@ export default function App() {
         {/* 9. Testimonials */}
         <TestimonialsSection />
 
-        {/* 10. Why Choose Dr Pallavi */}
+        {/* 10. Why Choose Dr XYZ */}
         <WhyChooseUs />
 
         {/* 11. FAQ Accordion */}

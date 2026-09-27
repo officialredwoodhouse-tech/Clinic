@@ -19,7 +19,7 @@ interface ContactSectionProps {
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBooking }) => {
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Dr Pallavi, I would like to inquire about your clinic location and timings in Chandigarh.'
+    'Hi Dr XYZ, I would like to inquire about your clinic location and timings in Chandigarh.'
   )}`;
 
   return (
@@ -199,7 +199,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Dr Pallavi Dental Clinic Chandigarh Map"
+              title="Dr XYZ Dental Clinic Chandigarh Map"
               className="w-full h-full object-cover"
             />
           </motion.div>

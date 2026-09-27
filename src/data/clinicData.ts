@@ -1,12 +1,12 @@
 import { ClinicConfig, ServiceDetail, GalleryItem, TestimonialItem, FAQItem } from '../types/clinic';
-import { heroClinicImg, doctorPallaviImg, smileMakeoverImg, dentalTechImg } from '../assets/images';
+import { heroClinicImg, doctorXyzImg, smileMakeoverImg, dentalTechImg } from '../assets/images';
 
 export const DEFAULT_CLINIC_CONFIG: ClinicConfig = {
-  clinicName: 'Dr Pallavi Dental & Aesthetic Care',
-  doctorName: 'Dr Pallavi',
+  clinicName: 'Dr XYZ Dental & Aesthetic Care',
+  doctorName: 'Dr XYZ',
   doctorTitle: 'BDS, MDS - Aesthetic Dentist & Oral Rehabilitation Specialist',
   doctorRole: 'Dental Surgeon & Clinical Director',
-  clinicEmail: 'care@drpallavidental.in',
+  clinicEmail: 'care@drxyzdental.in',
   clinicPhone: '+91 62306 29383',
   whatsappNumber: '916230629383',
   clinicAddress: 'SCO 142-143, Madhya Marg, Sector 9-C',
@@ -19,8 +19,8 @@ export const DEFAULT_CLINIC_CONFIG: ClinicConfig = {
     saturday: 'Saturday: 09:30 AM – 08:00 PM',
     sunday: 'Sunday: 10:00 AM – 02:00 PM (By Appointment)',
   },
-  instagramUrl: 'https://instagram.com/drpallavi_dental',
-  facebookUrl: 'https://facebook.com/drpallavidental',
+  instagramUrl: 'https://instagram.com/drxyz_dental',
+  facebookUrl: 'https://facebook.com/drxyzdental',
 };
 
 export const CLINIC_SERVICES: ServiceDetail[] = [
@@ -31,7 +31,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Routine dental examinations, preventive care, composite fillings, hygienic scaling, and long-term oral wellness.',
     category: 'Preventive & Essential',
     image: heroClinicImg,
-    detailedDescription: 'General dentistry forms the foundational cornerstone of lifelong oral vitality. At Dr Pallavi Dental, preventive check-ups utilize high-definition intraoral cameras and low-dose digital imaging to detect micro-cavities, structural enamel wear, and soft tissue changes long before they develop into painful conditions.',
+    detailedDescription: 'General dentistry forms the foundational cornerstone of lifelong oral vitality. At Dr XYZ Dental, preventive check-ups utilize high-definition intraoral cameras and low-dose digital imaging to detect micro-cavities, structural enamel wear, and soft tissue changes long before they develop into painful conditions.',
     benefits: [
       'Early interception of asymptomatic decay and structural micro-cracks',
       'Gentle ultrasonic scaling to eliminate pathogenic tartar and stain accumulation',
@@ -71,7 +71,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Modern rotary endodontics designed to eliminate infection, relieve discomfort, and preserve your natural tooth.',
     category: 'Restorative & Endodontics',
     image: dentalTechImg,
-    detailedDescription: 'Root canal therapy at Dr Pallavi Dental is a precise, comfortable microsurgical procedure designed to rescue teeth with deep pulp inflammation or bacterial infection. Using advanced rotary nickel-titanium instruments, digital apex locators, and microscopic magnification, the canal is meticulously cleared, disinfected, and hermetically sealed.',
+    detailedDescription: 'Root canal therapy at Dr XYZ Dental is a precise, comfortable microsurgical procedure designed to rescue teeth with deep pulp inflammation or bacterial infection. Using advanced rotary nickel-titanium instruments, digital apex locators, and microscopic magnification, the canal is meticulously cleared, disinfected, and hermetically sealed.',
     benefits: [
       'Rapid relief from acute, throbbing tooth pain and sensitivity',
       'Preservation of your natural root architecture, maintaining bone density',
@@ -111,7 +111,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Permanent, medical-grade titanium and zirconia tooth replacements designed to look, feel, and function like natural teeth.',
     category: 'Surgical & Rehabilitation',
     image: dentalTechImg,
-    detailedDescription: 'Dental implants represent the modern gold standard for restoring missing teeth. Dr Pallavi utilizes 3D Cone Beam CT guided planning to digitally map bone density, sinus proximity, and nerve pathways before placing surgical-grade titanium fixtures that osseointegrate directly into your jaw.',
+    detailedDescription: 'Dental implants represent the modern gold standard for restoring missing teeth. Dr XYZ utilizes 3D Cone Beam CT guided planning to digitally map bone density, sinus proximity, and nerve pathways before placing surgical-grade titanium fixtures that osseointegrate directly into your jaw.',
     benefits: [
       'Prevents irreversible jawbone resorption and facial contour sinking',
       'Independent restoration that spares adjacent healthy teeth from grinding',
@@ -151,7 +151,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Refine the symmetry, proportion, shade, and contour of your teeth with customized aesthetic dental enhancements.',
     category: 'Aesthetic Dentistry',
     image: smileMakeoverImg,
-    detailedDescription: 'Cosmetic dentistry at Dr Pallavi Dental is where clinical art meets dental science. Whether addressing minor gaps, intrinsic enamel discoloration, chipped edges, or asymmetrical gumlines, our treatments prioritize natural beauty, facial harmony, and minimal tooth reduction.',
+    detailedDescription: 'Cosmetic dentistry at Dr XYZ Dental is where clinical art meets dental science. Whether addressing minor gaps, intrinsic enamel discoloration, chipped edges, or asymmetrical gumlines, our treatments prioritize natural beauty, facial harmony, and minimal tooth reduction.',
     benefits: [
       'Harmonizes tooth proportions with your facial midline and lip contours',
       'Conservative approaches preserving the maximum amount of sound enamel',
@@ -191,7 +191,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'A holistic, multidisciplinary transformation combining aesthetic and restorative treatments tailored to your smile vision.',
     category: 'Comprehensive Aesthetics',
     image: smileMakeoverImg,
-    detailedDescription: 'A Smile Makeover is a comprehensive redesign of your visible smile. Dr Pallavi evaluates facial symmetry, lip dynamics, gum architecture, bite kinematics, and skin undertones to craft a personalized harmony between health, function, and aesthetic perfection.',
+    detailedDescription: 'A Smile Makeover is a comprehensive redesign of your visible smile. Dr XYZ evaluates facial symmetry, lip dynamics, gum architecture, bite kinematics, and skin undertones to craft a personalized harmony between health, function, and aesthetic perfection.',
     benefits: [
       'Full-spectrum correction of complex, multi-factorial dental concerns',
       'Bite-balanced longevity preventing jaw joint fatigue and tooth fracture',
@@ -231,7 +231,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Medical-grade in-office and take-home whitening protocols engineered to lift years of deep intrinsic and extrinsic stains.',
     category: 'Aesthetic Dentistry',
     image: smileMakeoverImg,
-    detailedDescription: 'Professional teeth whitening under dental supervision is the safest and most effective method to brighten stained teeth. Dr Pallavi utilizes pH-balanced formulations enriched with desensitizing agents that protect enamel crystals while breaking apart chromogen pigments from tea, coffee, wine, and aging.',
+    detailedDescription: 'Professional teeth whitening under dental supervision is the safest and most effective method to brighten stained teeth. Dr XYZ utilizes pH-balanced formulations enriched with desensitizing agents that protect enamel crystals while breaking apart chromogen pigments from tea, coffee, wine, and aging.',
     benefits: [
       'Lifts teeth by 4 to 8 shades in a single monitored appointment',
       'Advanced potassium nitrate and fluoride technology minimizes sensitivity',
@@ -271,7 +271,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'State-of-the-art alignment solutions including clear aligners, ceramic brackets, and interceptive orthodontic care.',
     category: 'Orthodontics & Alignment',
     image: dentalTechImg,
-    detailedDescription: 'Orthodontic therapy corrects crowding, spacing, rotations, and malocclusions (overbites, crossbites, and underbites). Dr Pallavi offers both invisible clear aligner therapy and aesthetic ceramic brackets, designing treatment for optimal facial aesthetics, airway health, and bite equilibrium.',
+    detailedDescription: 'Orthodontic therapy corrects crowding, spacing, rotations, and malocclusions (overbites, crossbites, and underbites). Dr XYZ offers both invisible clear aligner therapy and aesthetic ceramic brackets, designing treatment for optimal facial aesthetics, airway health, and bite equilibrium.',
     benefits: [
       'Significantly easier cleaning, drastically reducing lifetime risk of decay and gum disease',
       'Relieves abnormal bite stress that causes enamel fracturing and TMJ discomfort',
@@ -351,7 +351,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Targeted therapies for bleeding gums, gingivitis, periodontal pockets, and bone preservation.',
     category: 'Periodontics & Gum Health',
     image: dentalTechImg,
-    detailedDescription: 'Healthy gums are the biological anchor of every tooth. Gingival bleeding and chronic inflammation are early warning signs of periodontal disease, which can lead to bone loss and tooth mobility if left unmanaged. Dr Pallavi utilizes targeted scaling, root planing, and antimicrobial irrigation to restore gum health.',
+    detailedDescription: 'Healthy gums are the biological anchor of every tooth. Gingival bleeding and chronic inflammation are early warning signs of periodontal disease, which can lead to bone loss and tooth mobility if left unmanaged. Dr XYZ utilizes targeted scaling, root planing, and antimicrobial irrigation to restore gum health.',
     benefits: [
       'Stops persistent gum bleeding, swelling, tenderness, and chronic bad breath (halitosis)',
       'Halts deep bacterial progression and preserves bone support around natural teeth',
@@ -391,7 +391,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Gentle, surgical assessment and extraction of impacted or painful third molars with modern comfort protocols.',
     category: 'Oral Surgery',
     image: dentalTechImg,
-    detailedDescription: 'Third molars frequently become partially or fully impacted due to lack of space in the jaw, leading to recurrent pericoronitis, cyst development, and damage to adjacent second molars. Dr Pallavi performs gentle, planned extractions using 3D nerve mapping and atraumatic surgical techniques.',
+    detailedDescription: 'Third molars frequently become partially or fully impacted due to lack of space in the jaw, leading to recurrent pericoronitis, cyst development, and damage to adjacent second molars. Dr XYZ performs gentle, planned extractions using 3D nerve mapping and atraumatic surgical techniques.',
     benefits: [
       'Resolves acute jaw stiffness, cheek swelling, and recurrent localized infections',
       'Protects adjacent second molars from hidden cervical resorption and caries',
@@ -431,7 +431,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Friendly, patient, and gentle dental care designed to nurture positive dental habits and healthy smiles in children.',
     category: 'Children’s Dentistry',
     image: heroClinicImg,
-    detailedDescription: 'Early dental experiences shape a child’s attitude toward healthcare for the rest of their life. Our pediatric approach at Dr Pallavi Dental is patient, warm, and zero-fear. We guide young smiles through preventive sealants, fluoridation, cavity restorations, and space management in a welcoming environment.',
+    detailedDescription: 'Early dental experiences shape a child’s attitude toward healthcare for the rest of their life. Our pediatric approach at Dr XYZ Dental is patient, warm, and zero-fear. We guide young smiles through preventive sealants, fluoridation, cavity restorations, and space management in a welcoming environment.',
     benefits: [
       'Builds trust, confidence, and positive associations with dental visits from an early age',
       'Protects deciduous milk teeth vital for nutrition, speech development, and adult tooth spacing',
@@ -471,7 +471,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     shortDesc: 'Custom-crafted flexible, acrylic, and cast-partial prosthetics engineered for dependable stability, aesthetics, and comfort.',
     category: 'Prosthodontics',
     image: heroClinicImg,
-    detailedDescription: 'For patients missing multiple teeth or full arches where implants are contraindicated or phased, custom prosthodontic dentures provide reliable restoration of chewing capability, lip fullness, and clear speech. Dr Pallavi crafts lightweight, anatomically contoured appliances with lifelike gum tinting.',
+    detailedDescription: 'For patients missing multiple teeth or full arches where implants are contraindicated or phased, custom prosthodontic dentures provide reliable restoration of chewing capability, lip fullness, and clear speech. Dr XYZ crafts lightweight, anatomically contoured appliances with lifelike gum tinting.',
     benefits: [
       'Restores masticatory chewing efficiency and speech articulation',
       'Provides structural support to cheeks and lips, rejuvenating lower facial height',
@@ -639,7 +639,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     patientName: 'R. Sharma',
     treatment: 'Root Canal & Zirconia Crown',
     rating: 5,
-    reviewText: 'I had been postponing my root canal for months out of fear. Dr Pallavi explained every step beforehand, and the procedure was completely smooth and comfortable. The clinic ambiance in Sector 9 is exceptional and feels like a boutique sanctuary.',
+    reviewText: 'I had been postponing my root canal for months out of fear. Dr XYZ explained every step beforehand, and the procedure was completely smooth and comfortable. The clinic ambiance in Sector 9 is exceptional and feels like a boutique sanctuary.',
     date: 'Verified Patient · Chandigarh',
     source: 'Google Review'
   },
@@ -648,7 +648,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     patientName: 'P. Grewal',
     treatment: 'Smile Makeover & Veneers',
     rating: 5,
-    reviewText: 'The level of precision and aesthetic eye Dr Pallavi has is unmatched in the Tricity. My veneers look natural and balanced, not like fake Hollywood teeth. The digital preview let me see the outcome before starting.',
+    reviewText: 'The level of precision and aesthetic eye Dr XYZ has is unmatched in the Tricity. My veneers look natural and balanced, not like fake Hollywood teeth. The digital preview let me see the outcome before starting.',
     date: 'Verified Patient · Panchkula',
     source: 'Verified Patient'
   },
@@ -657,7 +657,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     patientName: 'A. Kapoor',
     treatment: 'Dental Implant Rehabilitation',
     rating: 5,
-    reviewText: 'After a sports injury, I lost a front tooth. Dr Pallavi guided me through 3D scanning and implant placement. Highly professional, zero ambiguity about treatment timelines, and genuinely warm patient care.',
+    reviewText: 'After a sports injury, I lost a front tooth. Dr XYZ guided me through 3D scanning and implant placement. Highly professional, zero ambiguity about treatment timelines, and genuinely warm patient care.',
     date: 'Verified Patient · Mohali',
     source: 'Google Review'
   },
@@ -718,7 +718,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     question: 'How much does dental treatment cost?',
-    answer: 'Dental treatment costs depend on the unique condition of your teeth and the materials or techniques required. Following an honest clinical assessment, Dr Pallavi provides an itemized treatment estimate with transparent options so you can make an informed decision without surprises.'
+    answer: 'Dental treatment costs depend on the unique condition of your teeth and the materials or techniques required. Following an honest clinical assessment, Dr XYZ provides an itemized treatment estimate with transparent options so you can make an informed decision without surprises.'
   },
   {
     question: 'Do you treat children?',
@@ -730,6 +730,6 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     question: 'How can I contact the clinic?',
-    answer: 'You can reach us by phone at +91 62306 29383, via WhatsApp for swift messaging, or by email at care@drpallavidental.in. Our clinic is centrally located in Sector 9-C, Madhya Marg, Chandigarh with convenient parking.'
+    answer: 'You can reach us by phone at +91 62306 29383, via WhatsApp for swift messaging, or by email at care@drxyzdental.in. Our clinic is centrally located in Sector 9-C, Madhya Marg, Chandigarh with convenient parking.'
   }
 ];

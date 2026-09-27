@@ -18,7 +18,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
   config,
 }) => {
   const whatsappMessage = service
-    ? `Hi Dr Pallavi, I would like to inquire about ${service.title} at your Chandigarh clinic.`
+    ? `Hi Dr XYZ, I would like to inquire about ${service.title} at your Chandigarh clinic.`
     : '';
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -120,7 +120,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
               {/* Potential Treatment Options */}
               <div>
                 <h4 className="text-base font-serif font-bold text-[#183127] mb-4">
-                  Treatment Options Available at Dr Pallavi Dental
+                  Treatment Options Available at Dr XYZ Dental
                 </h4>
                 <div className="space-y-3">
                   {service.treatmentOptions.map((opt, idx) => (
