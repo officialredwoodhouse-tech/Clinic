@@ -55,7 +55,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-teal-500/20 selection:text-teal-900 relative">
+    <div className="min-h-screen bg-[#F6F3EE] text-[#242922] font-sans selection:bg-[#203D32]/25 selection:text-[#183127] relative">
       {/* Top Navbar */}
       <Navbar
         config={config}

@@ -1,45 +1,49 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   :root {
     --font-serif: "Playfair Display", Georgia, Cambria, serif;
     --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   }
   body {
     font-family: var(--font-sans);
-    color: #1e293b;
-    background-color: #f8fafc;
+    color: #242922;
+    background-color: #F6F3EE;
   }
   h1, h2, .font-serif {
     font-family: var(--font-serif);
   }
 }
 
+/* Warm Beige and Pine Green Glassmorphism Panels */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 253, 250, 0.78);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 20px 40px -15px rgba(15, 30, 60, 0.04), 0 1px 1px rgba(255, 255, 255, 0.8) inset;
+  border: 1px solid rgba(230, 222, 210, 0.85);
+  box-shadow: 0 20px 40px -15px rgba(25, 43, 34, 0.06), 0 1px 1px rgba(255, 255, 255, 0.9) inset;
 }
 
 .glass-panel-subtle {
-  background: rgba(255, 255, 255, 0.52);
+  background: rgba(250, 247, 241, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(226, 218, 204, 0.6);
 }
 
 .glass-panel-dark {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(24, 49, 39, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(206, 179, 133, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(12, 25, 20, 0.35);
 }
 
 .glass-pill {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 253, 249, 0.82);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(220, 210, 194, 0.8);
 }

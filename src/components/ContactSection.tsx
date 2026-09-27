@@ -7,9 +7,10 @@ import {
   Clock,
   Navigation,
   Calendar,
-  ExternalLink
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
+import { smoothEasing, staggerContainerVariants, childFadeUpVariants } from './SectionTransition';
 
 interface ContactSectionProps {
   config: ClinicConfig;
@@ -22,55 +23,74 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
   )}`;
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <motion.section
+      id="contact"
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.8, ease: smoothEasing }}
+      className="py-24 relative overflow-hidden bg-[#FAF7F2]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 text-left">
-          <span className="text-xs font-semibold uppercase tracking-widest text-teal-700 block mb-2">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: smoothEasing }}
+          className="max-w-3xl mb-16 text-left"
+        >
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
             Location & Access
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#183127] tracking-tight">
             Let's Talk About Your Smile.
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-slate-600">
+          <p className="mt-3 text-base sm:text-lg text-[#4C5950]">
             Conveniently situated in Sector 9-C, Madhya Marg, Chandigarh with private parking and elevator access.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: Contact Cards */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+          <motion.div
+            variants={staggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="lg:col-span-5 flex flex-col justify-between space-y-4"
+          >
             {/* Address Card */}
-            <div className="p-6 rounded-3xl glass-panel border border-white/80">
+            <motion.div variants={childFadeUpVariants} className="p-6 rounded-3xl glass-panel border border-[#E3D9C9]">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-teal-50 text-teal-800 shrink-0 border border-teal-100">
-                  <MapPin className="w-5 h-5 text-teal-700" />
+                <div className="p-3 rounded-2xl bg-[#EFE8DD] text-[#183127] shrink-0 border border-[#DDD0BC]">
+                  <MapPin className="w-5 h-5 text-[#8C6D3B]" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-1">
+                  <h3 className="text-sm font-semibold text-[#183127] uppercase tracking-wider mb-1">
                     Clinic Location
                   </h3>
-                  <p className="text-sm text-slate-700 font-medium leading-relaxed">
+                  <p className="text-sm text-[#38453D] font-medium leading-relaxed">
                     {config.clinicAddress}
                   </p>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <p className="text-xs text-[#637267] mt-0.5">
                     {config.city}, {config.state}
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Direct Connect: Phone, WhatsApp, Email */}
-            <div className="p-6 rounded-3xl glass-panel border border-white/80 space-y-4">
+            <motion.div variants={childFadeUpVariants} className="p-6 rounded-3xl glass-panel border border-[#E3D9C9] space-y-4">
               <div className="flex items-center gap-4">
-                <div className="p-2.5 rounded-xl bg-teal-50 text-teal-800 shrink-0 border border-teal-100">
-                  <Phone className="w-4 h-4 text-teal-700" />
+                <div className="p-2.5 rounded-xl bg-[#EFE8DD] text-[#183127] shrink-0 border border-[#DDD0BC]">
+                  <Phone className="w-4 h-4 text-[#8C6D3B]" />
                 </div>
                 <div className="flex-1">
-                  <span className="text-xs text-slate-400 block">Phone Desk</span>
+                  <span className="text-xs text-[#829086] block">Phone Desk</span>
                   <a
                     href={`tel:${config.clinicPhone.replace(/\s+/g, '')}`}
-                    className="text-sm font-semibold text-slate-800 hover:text-teal-700 transition-colors"
+                    className="text-sm font-semibold text-[#183127] hover:text-[#284D3F] transition-colors"
                   >
                     {config.clinicPhone}
                   </a>
@@ -78,16 +98,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="p-2.5 rounded-xl bg-teal-50 text-teal-800 shrink-0 border border-teal-100">
-                  <MessageSquare className="w-4 h-4 text-teal-700" />
+                <div className="p-2.5 rounded-xl bg-[#EFE8DD] text-[#183127] shrink-0 border border-[#DDD0BC]">
+                  <MessageSquare className="w-4 h-4 text-[#203D32]" />
                 </div>
                 <div className="flex-1">
-                  <span className="text-xs text-slate-400 block">WhatsApp Desk</span>
+                  <span className="text-xs text-[#829086] block">WhatsApp Desk</span>
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-teal-800 hover:text-teal-950 transition-colors"
+                    className="text-sm font-semibold text-[#183127] hover:text-[#284D3F] transition-colors"
                   >
                     +{config.whatsappNumber}
                   </a>
@@ -95,50 +115,50 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="p-2.5 rounded-xl bg-teal-50 text-teal-800 shrink-0 border border-teal-100">
-                  <Mail className="w-4 h-4 text-teal-700" />
+                <div className="p-2.5 rounded-xl bg-[#EFE8DD] text-[#183127] shrink-0 border border-[#DDD0BC]">
+                  <Mail className="w-4 h-4 text-[#8C6D3B]" />
                 </div>
                 <div className="flex-1">
-                  <span className="text-xs text-slate-400 block">Email Inquiries</span>
+                  <span className="text-xs text-[#829086] block">Email Inquiries</span>
                   <a
                     href={`mailto:${config.clinicEmail}`}
-                    className="text-sm font-semibold text-slate-800 hover:text-teal-700 transition-colors"
+                    className="text-sm font-semibold text-[#183127] hover:text-[#284D3F] transition-colors"
                   >
                     {config.clinicEmail}
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Opening Hours */}
-            <div className="p-6 rounded-3xl glass-panel border border-white/80">
+            <motion.div variants={childFadeUpVariants} className="p-6 rounded-3xl glass-panel border border-[#E3D9C9]">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-teal-50 text-teal-800 shrink-0 border border-teal-100">
-                  <Clock className="w-5 h-5 text-teal-700" />
+                <div className="p-3 rounded-2xl bg-[#EFE8DD] text-[#183127] shrink-0 border border-[#DDD0BC]">
+                  <Clock className="w-5 h-5 text-[#8C6D3B]" />
                 </div>
-                <div className="text-xs sm:text-sm text-slate-600 space-y-1 w-full">
-                  <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-2">
+                <div className="text-xs sm:text-sm text-[#4E5A51] space-y-1 w-full">
+                  <h3 className="text-sm font-semibold text-[#183127] uppercase tracking-wider mb-2">
                     Opening Hours
                   </h3>
-                  <div className="flex justify-between pb-1 border-b border-slate-100">
+                  <div className="flex justify-between pb-1 border-b border-[#E3D9C9]">
                     <span>{config.openingHours.weekdays}</span>
                   </div>
                   <div className="flex justify-between pt-1">
-                    <span className="text-teal-800 font-medium">{config.openingHours.sunday}</span>
+                    <span className="text-[#183127] font-medium">{config.openingHours.sunday}</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <motion.div variants={childFadeUpVariants} className="flex flex-wrap items-center gap-3 pt-2">
               <a
                 href={config.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition-colors shadow-xs"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold text-[#183127] bg-[#EFE8DD] hover:bg-[#E4DACB] border border-[#D5C9B5] rounded-xl transition-colors shadow-xs"
               >
-                <Navigation className="w-4 h-4 text-teal-600" />
+                <Navigation className="w-4 h-4 text-[#8C6D3B]" />
                 <span>Get Directions</span>
               </a>
 
@@ -146,25 +166,31 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold text-teal-900 bg-teal-50 hover:bg-teal-100 border border-teal-200 rounded-xl transition-colors shadow-xs"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold text-[#183127] bg-[#EFE9DF] hover:bg-[#E4DCCE] border border-[#D5C9B7] rounded-xl transition-colors shadow-xs"
               >
-                <MessageSquare className="w-4 h-4 text-teal-600" />
+                <MessageSquare className="w-4 h-4 text-[#203D32]" />
                 <span>WhatsApp Us</span>
               </a>
 
               <button
                 type="button"
                 onClick={onOpenBooking}
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold text-white bg-slate-900 hover:bg-teal-900 rounded-xl transition-colors shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-semibold text-[#FAF7F2] bg-[#183127] hover:bg-[#203D32] rounded-xl transition-colors shadow-xs cursor-pointer border border-[#2D5444]"
               >
-                <Calendar className="w-4 h-4 text-teal-300" />
+                <Calendar className="w-4 h-4 text-[#D4AF37]" />
                 <span>Book Appointment</span>
               </button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column: Google Maps Interactive Embed */}
-          <div className="lg:col-span-7 rounded-3xl overflow-hidden glass-panel border border-white/90 shadow-xl min-h-[380px] lg:min-h-[500px] relative">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: smoothEasing }}
+            className="lg:col-span-7 rounded-3xl overflow-hidden glass-panel border border-[#E3D9C9] shadow-xl min-h-[380px] lg:min-h-[500px] relative"
+          >
             <iframe
               src={config.googleMapsEmbedUrl}
               width="100%"
@@ -176,9 +202,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
               title="Dr Aryan Dental Clinic Chandigarh Map"
               className="w-full h-full object-cover"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
