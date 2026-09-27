@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
   };
 
   const whatsappDirectUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Dr Aryan, I would like to know more about your dental services and book an appointment.'
+    'Hi Dr Pallavi, I would like to know more about your dental services and book an appointment.'
   )}`;
 
   return (

@@ -28,7 +28,7 @@ export const PatientJourney: React.FC = () => {
             Clear Steps. Predictable Outcomes.
           </h2>
           <p className="mt-3 text-base text-[#4C5950]">
-            From your very first conversation to lasting oral wellness, here is what your experience at Dr Aryan looks like.
+            From your very first conversation to lasting oral wellness, here is what your experience at Dr Pallavi Dental looks like.
           </p>
         </motion.div>
 

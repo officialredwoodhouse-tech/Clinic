@@ -202,7 +202,7 @@ export const SmileGallery: React.FC = () => {
         <div className="mt-8 p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex items-start gap-3 text-xs text-amber-900 max-w-3xl">
           <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
-            <strong>Clinical Disclaimer:</strong> Results vary by patient and treatment. Images are shared with appropriate patient consent and illustrative clinical intent. Treatment plans are customized after clinical evaluation by Dr Aryan.
+            <strong>Clinical Disclaimer:</strong> Results vary by patient and treatment. Images are shared with appropriate patient consent and illustrative clinical intent. Treatment plans are customized after clinical evaluation by Dr Pallavi.
           </p>
         </div>
       </div>

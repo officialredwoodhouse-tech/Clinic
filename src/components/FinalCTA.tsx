@@ -11,7 +11,7 @@ interface FinalCTAProps {
 
 export const FinalCTA: React.FC<FinalCTAProps> = ({ config, onOpenBooking }) => {
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Dr Aryan, I would like to schedule a personal consultation for my smile.'
+    'Hi Dr Pallavi, I would like to schedule a personal consultation for my smile.'
   )}`;
 
   return (
@@ -65,7 +65,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ config, onOpenBooking }) => 
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 text-xs font-semibold uppercase tracking-wider text-[#FAF7F2] bg-[#244738] hover:bg-[#2C5644] border border-[#3E705A] rounded-2xl transition-all duration-150 active:scale-95"
               >
                 <MessageSquare className="w-4 h-4 text-[#D4AF37]" />
-                <span>WhatsApp Dr Aryan</span>
+                <span>WhatsApp Dr Pallavi</span>
               </a>
             </div>
           </div>

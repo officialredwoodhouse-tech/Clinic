@@ -1,12 +1,12 @@
 import { ClinicConfig, ServiceDetail, GalleryItem, TestimonialItem, FAQItem } from '../types/clinic';
-import { heroClinicImg, doctorAryanImg, smileMakeoverImg, dentalTechImg } from '../assets/images';
+import { heroClinicImg, doctorPallaviImg, smileMakeoverImg, dentalTechImg } from '../assets/images';
 
 export const DEFAULT_CLINIC_CONFIG: ClinicConfig = {
-  clinicName: 'Dr Aryan Dental & Aesthetic Care',
-  doctorName: 'Dr Aryan',
-  doctorTitle: 'BDS, MDS - Oral & Maxillofacial Rehabilitation Specialist',
+  clinicName: 'Dr Pallavi Dental & Aesthetic Care',
+  doctorName: 'Dr Pallavi',
+  doctorTitle: 'BDS, MDS - Aesthetic Dentist & Oral Rehabilitation Specialist',
   doctorRole: 'Dental Surgeon & Clinical Director',
-  clinicEmail: 'care@draryandental.in',
+  clinicEmail: 'care@drpallavidental.in',
   clinicPhone: '+91 62306 29383',
   whatsappNumber: '916230629383',
   clinicAddress: 'SCO 142-143, Madhya Marg, Sector 9-C',
@@ -19,8 +19,8 @@ export const DEFAULT_CLINIC_CONFIG: ClinicConfig = {
     saturday: 'Saturday: 09:30 AM – 08:00 PM',
     sunday: 'Sunday: 10:00 AM – 02:00 PM (By Appointment)',
   },
-  instagramUrl: 'https://instagram.com/draryan_dental',
-  facebookUrl: 'https://facebook.com/draryandental',
+  instagramUrl: 'https://instagram.com/drpallavi_dental',
+  facebookUrl: 'https://facebook.com/drpallavidental',
 };
 
 export const CLINIC_SERVICES: ServiceDetail[] = [
@@ -30,8 +30,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'General Dentistry',
     shortDesc: 'Routine dental examinations, preventive care, composite fillings, hygienic scaling, and long-term oral wellness.',
     category: 'Preventive & Essential',
-    image: '/src/assets/images/hero_luxury_dental_clinic_1790488557370.jpg',
-    detailedDescription: 'General dentistry forms the foundational cornerstone of lifelong oral vitality. At Dr Aryan, preventive check-ups utilize high-definition intraoral cameras and low-dose digital imaging to detect micro-cavities, structural enamel wear, and soft tissue changes long before they develop into painful conditions.',
+    image: heroClinicImg,
+    detailedDescription: 'General dentistry forms the foundational cornerstone of lifelong oral vitality. At Dr Pallavi Dental, preventive check-ups utilize high-definition intraoral cameras and low-dose digital imaging to detect micro-cavities, structural enamel wear, and soft tissue changes long before they develop into painful conditions.',
     benefits: [
       'Early interception of asymptomatic decay and structural micro-cracks',
       'Gentle ultrasonic scaling to eliminate pathogenic tartar and stain accumulation',
@@ -70,8 +70,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Root Canal Treatment',
     shortDesc: 'Modern rotary endodontics designed to eliminate infection, relieve discomfort, and preserve your natural tooth.',
     category: 'Restorative & Endodontics',
-    image: '/src/assets/images/modern_dental_technology_1790488601891.jpg',
-    detailedDescription: 'Root canal therapy at Dr Aryan is a precise, comfortable microsurgical procedure designed to rescue teeth with deep pulp inflammation or bacterial infection. Using advanced rotary nickel-titanium instruments, digital apex locators, and microscopic magnification, the canal is meticulously cleared, disinfected, and hermetically sealed.',
+    image: dentalTechImg,
+    detailedDescription: 'Root canal therapy at Dr Pallavi Dental is a precise, comfortable microsurgical procedure designed to rescue teeth with deep pulp inflammation or bacterial infection. Using advanced rotary nickel-titanium instruments, digital apex locators, and microscopic magnification, the canal is meticulously cleared, disinfected, and hermetically sealed.',
     benefits: [
       'Rapid relief from acute, throbbing tooth pain and sensitivity',
       'Preservation of your natural root architecture, maintaining bone density',
@@ -110,8 +110,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Dental Implants',
     shortDesc: 'Permanent, medical-grade titanium and zirconia tooth replacements designed to look, feel, and function like natural teeth.',
     category: 'Surgical & Rehabilitation',
-    image: '/src/assets/images/modern_dental_technology_1790488601891.jpg',
-    detailedDescription: 'Dental implants represent the modern gold standard for restoring missing teeth. Dr Aryan utilizes 3D Cone Beam CT guided planning to digitally map bone density, sinus proximity, and nerve pathways before placing surgical-grade titanium fixtures that osseointegrate directly into your jaw.',
+    image: dentalTechImg,
+    detailedDescription: 'Dental implants represent the modern gold standard for restoring missing teeth. Dr Pallavi utilizes 3D Cone Beam CT guided planning to digitally map bone density, sinus proximity, and nerve pathways before placing surgical-grade titanium fixtures that osseointegrate directly into your jaw.',
     benefits: [
       'Prevents irreversible jawbone resorption and facial contour sinking',
       'Independent restoration that spares adjacent healthy teeth from grinding',
@@ -130,14 +130,14 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
         idealFor: 'Spans of consecutive missing teeth'
       },
       {
-        name: 'Full-Arch Fixed Rehabilitation (All-on-4 / All-on-6)',
-        description: 'Complete non-removable ceramic arch supported by strategically angled implants.',
-        idealFor: 'Edentulous patients or those with failing dentition'
+        name: 'Full Arch Immediate Fixed Rehabilitation',
+        description: 'Permanent hybrid bridges anchored on 4 to 6 precision implants.',
+        idealFor: 'Completely edentulous patients or failing dentition'
       }
     ],
     procedureSteps: [
-      '3D CBCT digital scan and computer-guided surgical template fabrication',
-      'Minimally invasive implant fixture placement under profound local comfort',
+      '3D CBCT digital volumetric scan and virtual surgical planning',
+      'Minimally invasive computer-guided implant fixture insertion',
       'Osseointegration healing interval with aesthetic temporary prosthesis',
       'Digital intraoral impression and final monolithic zirconia crown cementation'
     ],
@@ -150,8 +150,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Cosmetic Dentistry',
     shortDesc: 'Refine the symmetry, proportion, shade, and contour of your teeth with customized aesthetic dental enhancements.',
     category: 'Aesthetic Dentistry',
-    image: '/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg',
-    detailedDescription: 'Cosmetic dentistry at Dr Aryan is where clinical art meets dental science. Whether addressing minor gaps, intrinsic enamel discoloration, chipped edges, or asymmetrical gumlines, our treatments prioritize natural beauty, facial harmony, and minimal tooth reduction.',
+    image: smileMakeoverImg,
+    detailedDescription: 'Cosmetic dentistry at Dr Pallavi Dental is where clinical art meets dental science. Whether addressing minor gaps, intrinsic enamel discoloration, chipped edges, or asymmetrical gumlines, our treatments prioritize natural beauty, facial harmony, and minimal tooth reduction.',
     benefits: [
       'Harmonizes tooth proportions with your facial midline and lip contours',
       'Conservative approaches preserving the maximum amount of sound enamel',
@@ -190,8 +190,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Smile Makeovers',
     shortDesc: 'A holistic, multidisciplinary transformation combining aesthetic and restorative treatments tailored to your smile vision.',
     category: 'Comprehensive Aesthetics',
-    image: '/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg',
-    detailedDescription: 'A Smile Makeover is a comprehensive redesign of your visible smile. Dr Aryan evaluates facial symmetry, lip dynamics, gum architecture, bite kinematics, and skin undertones to craft a personalized harmony between health, function, and aesthetic perfection.',
+    image: smileMakeoverImg,
+    detailedDescription: 'A Smile Makeover is a comprehensive redesign of your visible smile. Dr Pallavi evaluates facial symmetry, lip dynamics, gum architecture, bite kinematics, and skin undertones to craft a personalized harmony between health, function, and aesthetic perfection.',
     benefits: [
       'Full-spectrum correction of complex, multi-factorial dental concerns',
       'Bite-balanced longevity preventing jaw joint fatigue and tooth fracture',
@@ -230,8 +230,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Teeth Whitening',
     shortDesc: 'Medical-grade in-office and take-home whitening protocols engineered to lift years of deep intrinsic and extrinsic stains.',
     category: 'Aesthetic Dentistry',
-    image: '/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg',
-    detailedDescription: 'Professional teeth whitening under dental supervision is the safest and most effective method to brighten stained teeth. Dr Aryan utilizes pH-balanced formulations enriched with desensitizing agents that protect enamel crystals while breaking apart chromogen pigments from tea, coffee, wine, and aging.',
+    image: smileMakeoverImg,
+    detailedDescription: 'Professional teeth whitening under dental supervision is the safest and most effective method to brighten stained teeth. Dr Pallavi utilizes pH-balanced formulations enriched with desensitizing agents that protect enamel crystals while breaking apart chromogen pigments from tea, coffee, wine, and aging.',
     benefits: [
       'Lifts teeth by 4 to 8 shades in a single monitored appointment',
       'Advanced potassium nitrate and fluoride technology minimizes sensitivity',
@@ -270,8 +270,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Braces & Orthodontics',
     shortDesc: 'State-of-the-art alignment solutions including clear aligners, ceramic brackets, and interceptive orthodontic care.',
     category: 'Orthodontics & Alignment',
-    image: '/src/assets/images/modern_dental_technology_1790488601891.jpg',
-    detailedDescription: 'Orthodontic therapy corrects crowding, spacing, rotations, and malocclusions (overbites, crossbites, and underbites). Dr Aryan offers both invisible clear aligner therapy and aesthetic ceramic brackets, designing treatment for optimal facial aesthetics, airway health, and bite equilibrium.',
+    image: dentalTechImg,
+    detailedDescription: 'Orthodontic therapy corrects crowding, spacing, rotations, and malocclusions (overbites, crossbites, and underbites). Dr Pallavi offers both invisible clear aligner therapy and aesthetic ceramic brackets, designing treatment for optimal facial aesthetics, airway health, and bite equilibrium.',
     benefits: [
       'Significantly easier cleaning, drastically reducing lifetime risk of decay and gum disease',
       'Relieves abnormal bite stress that causes enamel fracturing and TMJ discomfort',
@@ -310,7 +310,7 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Crowns & Bridges',
     shortDesc: 'Precision-milled monolithic zirconia and ceramic restorations designed to rebuild fractured teeth and replace missing units.',
     category: 'Restorative Prosthetics',
-    image: '/src/assets/images/hero_luxury_dental_clinic_1790488557370.jpg',
+    image: heroClinicImg,
     detailedDescription: 'When a tooth is severely broken down, heavily filled, or weakened by root canal therapy, a custom dental crown encapsulates the remaining tooth structure with high-strength ceramic. Fixed dental bridges span the gap created by one or more missing teeth, anchored securely to adjacent natural teeth.',
     benefits: [
       'Exceptional fracture resistance with high-translucency monolithic zirconia',
@@ -350,11 +350,11 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Gum Treatment & Periodontics',
     shortDesc: 'Targeted therapies for bleeding gums, gingivitis, periodontal pockets, and bone preservation.',
     category: 'Periodontics & Gum Health',
-    image: '/src/assets/images/modern_dental_technology_1790488601891.jpg',
-    detailedDescription: 'Healthy gums are the biological anchor of every tooth. Gingival bleeding and chronic inflammation are early warning signs of periodontal disease, which can lead to bone loss and tooth mobility if left unmanaged. Dr Aryan utilizes targeted scaling, root planing, and antimicrobial irrigation to restore gum health.',
+    image: dentalTechImg,
+    detailedDescription: 'Healthy gums are the biological anchor of every tooth. Gingival bleeding and chronic inflammation are early warning signs of periodontal disease, which can lead to bone loss and tooth mobility if left unmanaged. Dr Pallavi utilizes targeted scaling, root planing, and antimicrobial irrigation to restore gum health.',
     benefits: [
       'Stops persistent gum bleeding, swelling, tenderness, and chronic bad breath (halitosis)',
-      'Haults deep bacterial progression and preserves bone support around natural teeth',
+      'Halts deep bacterial progression and preserves bone support around natural teeth',
       'Significantly lowers systemic inflammation associated with diabetes and cardiovascular risks',
       'Minimally invasive, comfort-managed treatments with rapid post-op recovery'
     ],
@@ -390,8 +390,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Wisdom Tooth Removal',
     shortDesc: 'Gentle, surgical assessment and extraction of impacted or painful third molars with modern comfort protocols.',
     category: 'Oral Surgery',
-    image: '/src/assets/images/modern_dental_technology_1790488601891.jpg',
-    detailedDescription: 'Third molars frequently become partially or fully impacted due to lack of space in the jaw, leading to recurrent pericoronitis, cyst development, and damage to adjacent second molars. Dr Aryan performs gentle, planned extractions using 3D nerve mapping and atraumatic surgical techniques.',
+    image: dentalTechImg,
+    detailedDescription: 'Third molars frequently become partially or fully impacted due to lack of space in the jaw, leading to recurrent pericoronitis, cyst development, and damage to adjacent second molars. Dr Pallavi performs gentle, planned extractions using 3D nerve mapping and atraumatic surgical techniques.',
     benefits: [
       'Resolves acute jaw stiffness, cheek swelling, and recurrent localized infections',
       'Protects adjacent second molars from hidden cervical resorption and caries',
@@ -430,8 +430,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Pediatric Dentistry',
     shortDesc: 'Friendly, patient, and gentle dental care designed to nurture positive dental habits and healthy smiles in children.',
     category: 'Children’s Dentistry',
-    image: '/src/assets/images/hero_luxury_dental_clinic_1790488557370.jpg',
-    detailedDescription: 'Early dental experiences shape a child’s attitude toward healthcare for the rest of their life. Our pediatric approach at Dr Aryan is patient, warm, and zero-fear. We guide young smiles through preventive sealants, fluoridation, cavity restorations, and space management in a welcoming environment.',
+    image: heroClinicImg,
+    detailedDescription: 'Early dental experiences shape a child’s attitude toward healthcare for the rest of their life. Our pediatric approach at Dr Pallavi Dental is patient, warm, and zero-fear. We guide young smiles through preventive sealants, fluoridation, cavity restorations, and space management in a welcoming environment.',
     benefits: [
       'Builds trust, confidence, and positive associations with dental visits from an early age',
       'Protects deciduous milk teeth vital for nutrition, speech development, and adult tooth spacing',
@@ -470,8 +470,8 @@ export const CLINIC_SERVICES: ServiceDetail[] = [
     title: 'Dentures & Tooth Replacement',
     shortDesc: 'Custom-crafted flexible, acrylic, and cast-partial prosthetics engineered for dependable stability, aesthetics, and comfort.',
     category: 'Prosthodontics',
-    image: '/src/assets/images/hero_luxury_dental_clinic_1790488557370.jpg',
-    detailedDescription: 'For patients missing multiple teeth or full arches where implants are contraindicated or phased, custom prosthodontic dentures provide reliable restoration of chewing capability, lip fullness, and clear speech. Dr Aryan crafts lightweight, anatomically contoured appliances with lifelike gum tinting.',
+    image: heroClinicImg,
+    detailedDescription: 'For patients missing multiple teeth or full arches where implants are contraindicated or phased, custom prosthodontic dentures provide reliable restoration of chewing capability, lip fullness, and clear speech. Dr Pallavi crafts lightweight, anatomically contoured appliances with lifelike gum tinting.',
     benefits: [
       'Restores masticatory chewing efficiency and speech articulation',
       'Provides structural support to cheeks and lips, rejuvenating lower facial height',
@@ -590,8 +590,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'case-01',
     title: 'Comprehensive Smile Harmonization',
     category: 'Smile Makeovers',
-    beforeImage: '/src/assets/images/hero_luxury_dental_clinic_1790488557370.jpg',
-    afterImage: '/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg',
+    beforeImage: heroClinicImg,
+    afterImage: smileMakeoverImg,
     caseDescription: 'Correction of midline asymmetry, worn incisal edges, and intrinsic fluorosis staining using conservative E.max ceramic veneers.',
     treatmentDuration: '2 visits over 10 days'
   },
@@ -599,8 +599,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'case-02',
     title: 'Front Diastema Closure & Edge Bonding',
     category: 'Cosmetic Dentistry',
-    beforeImage: '/src/assets/images/modern_dental_technology_1790488601891.jpg',
-    afterImage: '/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg',
+    beforeImage: dentalTechImg,
+    afterImage: smileMakeoverImg,
     caseDescription: 'Single-sitting aesthetic composite resin bonding closing a 2.5mm central diastema with lifelike surface micro-texture.',
     treatmentDuration: 'Single 90-minute visit'
   },
@@ -608,8 +608,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'case-03',
     title: 'Clinical In-Office Whitening',
     category: 'Whitening',
-    beforeImage: '/src/assets/images/hero_luxury_dental_clinic_1790488557370.jpg',
-    afterImage: '/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg',
+    beforeImage: heroClinicImg,
+    afterImage: smileMakeoverImg,
     caseDescription: 'Removal of severe coffee and dietary chromogenic pigmentation, lifting tooth shade from A3.5 to B1.',
     treatmentDuration: '60 minutes clinical protocol'
   },
@@ -617,8 +617,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'case-04',
     title: 'Single Anterior Implant & Zirconia Crown',
     category: 'Restorative Dentistry',
-    beforeImage: '/src/assets/images/modern_dental_technology_1790488601891.jpg',
-    afterImage: '/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg',
+    beforeImage: dentalTechImg,
+    afterImage: smileMakeoverImg,
     caseDescription: 'Replacement of a fractured upper central incisor with a 3D guided implant and natural screw-retained ceramic restoration.',
     treatmentDuration: 'Osseointegrated 3 months'
   },
@@ -626,8 +626,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'case-05',
     title: 'Clear Aligner Arch Realignment',
     category: 'Orthodontics',
-    beforeImage: '/src/assets/images/hero_luxury_dental_clinic_1790488557370.jpg',
-    afterImage: '/src/assets/images/smile_makeover_aesthetic_1790488586411.jpg',
+    beforeImage: heroClinicImg,
+    afterImage: smileMakeoverImg,
     caseDescription: 'Correction of lower anterior crowding and deep overbite without extractions using transparent aligners.',
     treatmentDuration: '9 months active wear'
   }
@@ -639,7 +639,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     patientName: 'R. Sharma',
     treatment: 'Root Canal & Zirconia Crown',
     rating: 5,
-    reviewText: 'I had been postponing my root canal for months out of fear. Dr Aryan explained every step beforehand, and the procedure was completely smooth and comfortable. The clinic ambiance in Sector 9 is exceptional and feels like a boutique sanctuary.',
+    reviewText: 'I had been postponing my root canal for months out of fear. Dr Pallavi explained every step beforehand, and the procedure was completely smooth and comfortable. The clinic ambiance in Sector 9 is exceptional and feels like a boutique sanctuary.',
     date: 'Verified Patient · Chandigarh',
     source: 'Google Review'
   },
@@ -648,7 +648,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     patientName: 'P. Grewal',
     treatment: 'Smile Makeover & Veneers',
     rating: 5,
-    reviewText: 'The level of precision and aesthetic eye Dr Aryan has is unmatched in the Tricity. My veneers look natural and balanced, not like fake Hollywood teeth. The digital preview let me see the outcome before starting.',
+    reviewText: 'The level of precision and aesthetic eye Dr Pallavi has is unmatched in the Tricity. My veneers look natural and balanced, not like fake Hollywood teeth. The digital preview let me see the outcome before starting.',
     date: 'Verified Patient · Panchkula',
     source: 'Verified Patient'
   },
@@ -657,7 +657,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
     patientName: 'A. Kapoor',
     treatment: 'Dental Implant Rehabilitation',
     rating: 5,
-    reviewText: 'After a sports injury, I lost a front tooth. Dr Aryan guided me through 3D scanning and implant placement. Highly professional, zero ambiguity about treatment timelines, and genuinely warm patient care.',
+    reviewText: 'After a sports injury, I lost a front tooth. Dr Pallavi guided me through 3D scanning and implant placement. Highly professional, zero ambiguity about treatment timelines, and genuinely warm patient care.',
     date: 'Verified Patient · Mohali',
     source: 'Google Review'
   },
@@ -718,7 +718,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     question: 'How much does dental treatment cost?',
-    answer: 'Dental treatment costs depend on the unique condition of your teeth and the materials or techniques required. Following an honest clinical assessment, Dr Aryan provides an itemized treatment estimate with transparent options so you can make an informed decision without surprises.'
+    answer: 'Dental treatment costs depend on the unique condition of your teeth and the materials or techniques required. Following an honest clinical assessment, Dr Pallavi provides an itemized treatment estimate with transparent options so you can make an informed decision without surprises.'
   },
   {
     question: 'Do you treat children?',
@@ -730,6 +730,6 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     question: 'How can I contact the clinic?',
-    answer: 'You can reach us by phone at +91 62306 29383, via WhatsApp for swift messaging, or by email at care@draryandental.in. Our clinic is centrally located in Sector 9-C, Madhya Marg, Chandigarh with convenient parking.'
+    answer: 'You can reach us by phone at +91 62306 29383, via WhatsApp for swift messaging, or by email at care@drpallavidental.in. Our clinic is centrally located in Sector 9-C, Madhya Marg, Chandigarh with convenient parking.'
   }
 ];

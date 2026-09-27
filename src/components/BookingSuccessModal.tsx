@@ -107,7 +107,7 @@ export const BookingSuccessModal: React.FC<BookingSuccessModalProps> = ({
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-[#FAF7F2] bg-[#183127] hover:bg-[#203D32] rounded-xl transition-all shadow-xs border border-[#2D5444]"
                     >
-                      <span>Chat With Dr Aryan</span>
+                      <span>Chat With Dr Pallavi</span>
                       <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37]" />
                     </a>
                   </div>

@@ -11,7 +11,7 @@ interface FloatingActionsProps {
 
 export const FloatingActions: React.FC<FloatingActionsProps> = ({ config, onOpenBooking }) => {
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Dr Aryan, I would like to know more about your dental services and book an appointment.'
+    'Hi Dr Pallavi, I would like to know more about your dental services and book an appointment.'
   )}`;
 
   return (

@@ -154,7 +154,7 @@ export const BookingSection: React.FC<BookingSectionProps> = ({
 *Message:* ${message ? message.trim() : 'None'}
 ${attachmentName ? `*Attachment:* ${attachmentName}` : ''}
 
-_Hi Dr Aryan, I have submitted my appointment details above. Please confirm my slot._`;
+_Hi Dr Pallavi, I have submitted my appointment details above. Please confirm my slot._`;
 
     const encodedText = encodeURIComponent(formattedWhatsAppText);
     const targetWhatsAppUrl = `https://wa.me/${config.whatsappNumber}?text=${encodedText}`;
@@ -466,7 +466,7 @@ _Hi Dr Aryan, I have submitted my appointment details above. Please confirm my s
                     className="mt-1 h-4 w-4 rounded border-[#C4B7A2] text-[#183127] focus:ring-[#203D32] cursor-pointer"
                   />
                   <label htmlFor="clinic-agreement" className="text-xs text-[#4E5A51] leading-relaxed cursor-pointer select-none">
-                    I agree to be contacted by Dr Aryan’s clinic team via phone, WhatsApp or email regarding this appointment request. I understand that this request is subject to clinic availability confirmation.
+                    I agree to be contacted by Dr Pallavi’s clinic team via phone, WhatsApp or email regarding this appointment request. I understand that this request is subject to clinic availability confirmation.
                   </label>
                 </div>
               </div>

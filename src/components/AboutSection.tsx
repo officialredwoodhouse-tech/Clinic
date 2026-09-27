@@ -3,7 +3,7 @@ import { UserCheck, MapPin, ArrowRight, ShieldCheck, HeartHandshake } from 'luci
 import { motion, AnimatePresence } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
 import { smoothEasing } from './SectionTransition';
-import { doctorAryanImg } from '../assets/images';
+import { doctorPallaviImg } from '../assets/images';
 
 interface AboutSectionProps {
   config: ClinicConfig;
@@ -38,8 +38,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
           >
             <div className="relative mx-auto max-w-md rounded-3xl overflow-hidden shadow-2xl shadow-[#183127]/15 border border-[#E3D9C9] bg-[#EFE8DD] aspect-[3/4]">
               <img
-                src={doctorAryanImg}
-                alt="Dr Aryan - Dentist and Dental Surgeon in Chandigarh"
+                src={doctorPallaviImg}
+                alt="Dr Pallavi - Dentist and Dental Surgeon in Chandigarh"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -83,7 +83,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
               <div className="mt-4 pt-4 border-t border-[#DFD5C4] text-xs space-y-2">
                 <div className="flex items-start justify-between text-[#4D5A50]">
                   <span className="text-[#849187]">Clinical Focus</span>
-                  <span className="font-medium text-[#183127] text-right">Preventive & Restorative Care</span>
+                  <span className="font-medium text-[#183127] text-right">Aesthetic & Restorative Care</span>
                 </div>
                 <div className="flex items-start justify-between text-[#4D5A50]">
                   <span className="text-[#849187]">Consultation</span>
@@ -102,7 +102,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
             className="lg:col-span-7 flex flex-col items-start text-left order-1 lg:order-2"
           >
             <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] mb-3">
-              About Dr Aryan
+              About Dr Pallavi
             </span>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#183127] tracking-tight mb-6 text-balance">
@@ -111,7 +111,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
 
             <div className="space-y-4 text-base sm:text-lg text-[#47544B] leading-relaxed">
               <p>
-                At Dr Aryan, we believe dental care should be more than a treatment. It should be an experience built around trust, clarity and comfort.
+                At Dr Pallavi Dental & Aesthetic Care, we believe dental care should be more than a treatment. It should be an experience built around trust, clarity and comfort.
               </p>
               <p>
                 Our approach combines modern dental techniques with personalized attention, helping patients understand their options and make confident decisions about their oral health.
@@ -148,7 +148,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
                 onClick={() => setShowFullBio(!showFullBio)}
                 className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold text-[#183127] bg-[#EFE8DC] hover:bg-[#E4DACB] border border-[#D5C9B5] rounded-2xl shadow-xs transition-colors cursor-pointer"
               >
-                <span>{showFullBio ? 'Close Details' : 'Meet Dr Aryan'}</span>
+                <span>{showFullBio ? 'Close Details' : 'Meet Dr Pallavi'}</span>
                 <ArrowRight className={`w-3.5 h-3.5 text-[#8C6D3B] transition-transform ${showFullBio ? 'rotate-90' : ''}`} />
               </button>
 

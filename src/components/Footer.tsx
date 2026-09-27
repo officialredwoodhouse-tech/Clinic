@@ -66,7 +66,7 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-[#4E5A51]">
               <li><a href="#hero" onClick={(e) => handleNavClick(e, '#hero')} className="hover:text-[#183127] transition-colors">Home</a></li>
-              <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-[#183127] transition-colors">About Dr Aryan</a></li>
+              <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-[#183127] transition-colors">About Dr Pallavi</a></li>
               <li><a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-[#183127] transition-colors">Services</a></li>
               <li><a href="#technology" onClick={(e) => handleNavClick(e, '#technology')} className="hover:text-[#183127] transition-colors">Technology</a></li>
               <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')} className="hover:text-[#183127] transition-colors">Smile Gallery</a></li>

@@ -12,7 +12,7 @@ interface FeaturedSmileProps {
 
 export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBooking }) => {
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Dr Aryan, I would like to consult about transforming my smile at your Chandigarh clinic.'
+    'Hi Dr Pallavi, I would like to consult about transforming my smile at your Chandigarh clinic.'
   )}`;
 
   return (
@@ -37,7 +37,7 @@ export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBook
               <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border border-[#E1D5C2] bg-[#EFE8DD]">
                 <img
                   src={smileMakeoverImg}
-                  alt="Transform Your Smile - Dr Aryan Dental Chandigarh"
+                  alt="Transform Your Smile - Dr Pallavi Dental Chandigarh"
                   className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
                   referrerPolicy="no-referrer"
                 />

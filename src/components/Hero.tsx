@@ -13,7 +13,7 @@ const smoothEasing: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
-    'Hi Dr Aryan, I would like to consult with you regarding dental care at your Chandigarh clinic.'
+    'Hi Dr Pallavi, I would like to consult with you regarding dental care at your Chandigarh clinic.'
   )}`;
 
   return (
@@ -115,7 +115,7 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
             >
               <div className="flex -space-x-1.5 overflow-hidden">
                 <span className="inline-block h-8 w-8 rounded-full ring-2 ring-[#EDE4D5] bg-[#203D32] text-[#F3EFE7] font-serif font-bold flex items-center justify-center text-[11px]">
-                  DA
+                  DP
                 </span>
               </div>
               <p>
@@ -135,7 +135,7 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
             <div className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl shadow-[#192B22]/15 border border-[#EDE4D5] aspect-[4/3] lg:aspect-[16/14]">
               <img
                 src={heroClinicImg}
-                alt="Dr Aryan Modern Dental Clinic Suite Chandigarh"
+                alt="Dr Pallavi Modern Dental Clinic Suite Chandigarh"
                 className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />

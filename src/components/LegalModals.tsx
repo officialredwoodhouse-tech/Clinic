@@ -91,7 +91,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose, config })
                   </p>
                   <h4 className="font-semibold text-[#183127] text-sm">2. Clinical Evaluation & Treatment Plans</h4>
                   <p>
-                    All medical or aesthetic estimations discussed online or over preliminary channels are tentative. Definitive treatment options, procedural risks, and finalized fee schedules require an in-person clinical and radiographic examination by Dr Aryan.
+                    All medical or aesthetic estimations discussed online or over preliminary channels are tentative. Definitive treatment options, procedural risks, and finalized fee schedules require an in-person clinical and radiographic examination by Dr Pallavi.
                   </p>
                   <h4 className="font-semibold text-[#183127] text-sm">3. Emergency Situations</h4>
                   <p>
