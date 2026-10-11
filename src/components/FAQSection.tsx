@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FAQ_ITEMS } from '../data/clinicData';
-import { smoothEasing, staggerContainerVariants, childFadeUpVariants } from './SectionTransition';
+import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollViewport } from './SectionTransition';
 
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -14,17 +14,17 @@ export const FAQSection: React.FC = () => {
   return (
     <motion.section
       id="faq"
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#EFE9DF]/50 border-t border-[#E0D5C3]"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={scrollViewport}
           transition={{ duration: 0.7, ease: smoothEasing }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
@@ -43,7 +43,7 @@ export const FAQSection: React.FC = () => {
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={scrollViewport}
           className="space-y-4"
         >
           {FAQ_ITEMS.map((item, idx) => {

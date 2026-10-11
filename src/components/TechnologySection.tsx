@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { TECHNOLOGY_ITEMS } from '../data/clinicData';
-import { smoothEasing, staggerContainerVariants, childFadeUpVariants } from './SectionTransition';
+import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollViewport } from './SectionTransition';
 
 const TECH_ICONS = [Camera, Radio, Scan, Layers, ShieldCheck, Zap];
 
@@ -28,9 +28,9 @@ export const TechnologySection: React.FC = () => {
   return (
     <motion.section
       id="technology"
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden"
     >
@@ -40,9 +40,9 @@ export const TechnologySection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={scrollViewport}
           transition={{ duration: 0.7, ease: smoothEasing }}
           className="max-w-3xl mb-16 text-left"
         >
@@ -63,7 +63,7 @@ export const TechnologySection: React.FC = () => {
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={scrollViewport}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20"
         >
           {TECHNOLOGY_ITEMS.map((item, idx) => {

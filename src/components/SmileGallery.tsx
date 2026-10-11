@@ -3,7 +3,7 @@ import { GALLERY_ITEMS } from '../data/clinicData';
 import { GalleryItem } from '../types/clinic';
 import { SlidersHorizontal, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { smoothEasing } from './SectionTransition';
+import { smoothEasing, scrollViewport } from './SectionTransition';
 
 const CATEGORIES = [
   'All Cases',
@@ -28,18 +28,18 @@ export const SmileGallery: React.FC = () => {
   return (
     <motion.section
       id="gallery"
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={scrollViewport}
           transition={{ duration: 0.7, ease: smoothEasing }}
           className="max-w-3xl mb-12 text-left"
         >

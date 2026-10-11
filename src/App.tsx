@@ -29,6 +29,7 @@ export default function App() {
   const [config, setConfig] = useState<ClinicConfig>(DEFAULT_CLINIC_CONFIG);
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
   const [preselectedTreatment, setPreselectedTreatment] = useState<string | undefined>(undefined);
+  const [isAiAgentOpen, setIsAiAgentOpen] = useState(false);
 
   // Sync config from backend on mount
   useEffect(() => {
@@ -68,6 +69,7 @@ export default function App() {
         <Hero
           config={config}
           onOpenBooking={() => handleOpenBooking()}
+          onOpenAiAgent={() => setIsAiAgentOpen(true)}
         />
 
         {/* 2. Trust Bar */}
@@ -140,7 +142,9 @@ export default function App() {
       {/* Persistent Floating Actions (Desktop & Mobile compliant) */}
       <FloatingActions
         config={config}
-        onOpenBooking={() => handleOpenBooking()}
+        onOpenBooking={(treatment) => handleOpenBooking(treatment)}
+        externalChatOpen={isAiAgentOpen}
+        onExternalChatChange={setIsAiAgentOpen}
       />
 
       {/* Legal Modals (Privacy & Terms) */}

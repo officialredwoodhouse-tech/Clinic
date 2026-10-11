@@ -2,23 +2,23 @@ import React from 'react';
 import { Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { WHY_CHOOSE_POINTS } from '../data/clinicData';
-import { smoothEasing, staggerContainerVariants, childFadeUpVariants } from './SectionTransition';
+import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollViewport } from './SectionTransition';
 
 export const WhyChooseUs: React.FC = () => {
   return (
     <motion.section
       id="why-us"
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#F2EDE5]/60 border-y border-[#E0D5C3]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={scrollViewport}
           transition={{ duration: 0.7, ease: smoothEasing }}
           className="max-w-3xl mb-16 text-left"
         >
@@ -37,7 +37,7 @@ export const WhyChooseUs: React.FC = () => {
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={scrollViewport}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {WHY_CHOOSE_POINTS.map((point) => (

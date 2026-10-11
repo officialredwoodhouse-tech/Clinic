@@ -2,16 +2,16 @@ import React from 'react';
 import { Cpu, HeartPulse, Sparkles, Layers } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { TRUST_PILLARS } from '../data/clinicData';
-import { smoothEasing, staggerContainerVariants, childFadeUpVariants } from './SectionTransition';
+import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollViewport } from './SectionTransition';
 
 const ICONS = [Cpu, HeartPulse, Sparkles, Layers];
 
 export const TrustBar: React.FC = () => {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.7, ease: smoothEasing }}
       className="relative py-8 -mt-4 mb-8"
     >
@@ -20,7 +20,7 @@ export const TrustBar: React.FC = () => {
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={scrollViewport}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
         >
           {TRUST_PILLARS.map((pillar, idx) => {

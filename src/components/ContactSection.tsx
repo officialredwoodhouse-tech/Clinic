@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
-import { smoothEasing, staggerContainerVariants, childFadeUpVariants } from './SectionTransition';
+import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollViewport } from './SectionTransition';
 
 interface ContactSectionProps {
   config: ClinicConfig;
@@ -25,18 +25,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
   return (
     <motion.section
       id="contact"
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#FAF7F2]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={scrollViewport}
           transition={{ duration: 0.7, ease: smoothEasing }}
           className="max-w-3xl mb-16 text-left"
         >
@@ -57,7 +57,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={scrollViewport}
             className="lg:col-span-5 flex flex-col justify-between space-y-4"
           >
             {/* Address Card */}

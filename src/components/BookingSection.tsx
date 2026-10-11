@@ -16,7 +16,7 @@ import {
 import { motion } from 'framer-motion';
 import { ClinicConfig, AppointmentRequest } from '../types/clinic';
 import { BookingSuccessModal } from './BookingSuccessModal';
-import { smoothEasing } from './SectionTransition';
+import { smoothEasing, scrollViewport } from './SectionTransition';
 
 const TREATMENTS = [
   'General Check-up',
@@ -219,9 +219,9 @@ _Hi Dr XYZ, I have submitted my appointment details above. Please confirm my slo
   return (
     <motion.section
       id="book"
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#FAF7F2]"
     >
@@ -231,9 +231,9 @@ _Hi Dr XYZ, I have submitted my appointment details above. Please confirm my slo
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={scrollViewport}
           transition={{ duration: 0.7, ease: smoothEasing }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
@@ -250,10 +250,10 @@ _Hi Dr XYZ, I have submitted my appointment details above. Please confirm my slo
 
         {/* Booking Card */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.75, delay: 0.15, ease: smoothEasing }}
+          initial={{ opacity: 0, y: 28, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={scrollViewport}
+          transition={{ duration: 0.75, delay: 0.12, ease: smoothEasing }}
           className="p-8 sm:p-12 rounded-3xl glass-panel border border-[#E3D9C9] shadow-2xl"
         >
           <form onSubmit={handleSubmit} className="space-y-8">

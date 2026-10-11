@@ -1,7 +1,9 @@
+import 'dotenv/config';
 import express, { Request, Response } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { GoogleGenAI, Type } from '@google/genai';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,6 +13,19 @@ const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
+
+function getAiClient(): GoogleGenAI | null {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) return null;
+  return new GoogleGenAI({
+    apiKey,
+    httpOptions: {
+      headers: {
+        'User-Agent': 'aistudio-build',
+      },
+    },
+  });
+}
 
 // In-memory data storage with sample seeded requests
 let clinicConfig = {
@@ -81,12 +96,282 @@ const appointments: AppointmentRecord[] = [
   }
 ];
 
+interface ChatInquiryRecord {
+  id: string;
+  name: string;
+  contact: string;
+  channel: 'whatsapp' | 'email';
+  topic: string;
+  message: string;
+  createdAt: string;
+}
+
+const chatInquiries: ChatInquiryRecord[] = [];
+
 // Anti-spam rate limiting map
 const ipRateLimit = new Map<string, number>();
 
 // API Routes
 app.get('/api/config', (req: Request, res: Response) => {
   res.json({ success: true, config: clinicConfig });
+});
+
+function buildClinicFallbackAiReply(userMessage: string): {
+  reply: string;
+  recommendedTreatment?: string;
+  followUpQuestions: string[];
+} {
+  const q = userMessage.toLowerCase();
+  if (q.includes('pain') || q.includes('ache') || q.includes('emergency') || q.includes('swelling') || q.includes('root canal')) {
+    return {
+      reply: `If you are experiencing tooth pain or sensitivity, ${clinicConfig.doctorName} provides gentle, microscopic Root Canal Treatment and same-day emergency pain relief at our Sector 9-C, Chandigarh clinic. Using modern local anesthesia and rotary endodontics, most root canals are completed comfortably in a single 45–60 minute visit.`,
+      recommendedTreatment: 'Root Canal',
+      followUpQuestions: [
+        'Book an urgent tooth pain check-up',
+        'Is root canal treatment painful?',
+        'What are your clinic timings today?',
+      ],
+    };
+  }
+  if (q.includes('implant') || q.includes('missing')) {
+    return {
+      reply: `At ${clinicConfig.clinicName}, ${clinicConfig.doctorName} uses 3D Cone Beam CT (CBCT) guided planning for surgical-grade Titanium and Zirconia Dental Implants. Implants preserve jawbone health and function just like natural teeth without affecting adjacent healthy teeth.`,
+      recommendedTreatment: 'Dental Implant',
+      followUpQuestions: [
+        'How long does a dental implant procedure take?',
+        'Schedule a 3D implant consultation',
+        'What is the difference between implants and bridges?',
+      ],
+    };
+  }
+  if (q.includes('veneer') || q.includes('smile') || q.includes('cosmetic') || q.includes('whiten') || q.includes('yellow') || q.includes('stain')) {
+    return {
+      reply: `${clinicConfig.doctorName} specializes in Digital Smile Design, ultra-thin E.max porcelain veneers, composite edge bonding, and medical-grade in-office Teeth Whitening (lifting 4–8 shades in one 60-minute session with minimal sensitivity). You can preview your smile outcome before treatment begins.`,
+      recommendedTreatment: 'Smile Makeover',
+      followUpQuestions: [
+        'How does Digital Smile Design work?',
+        'How many shades brighter does whitening get?',
+        'Book a Smile Makeover consultation',
+      ],
+    };
+  }
+  if (q.includes('brace') || q.includes('aligner') || q.includes('ortho') || q.includes('crooked') || q.includes('gap')) {
+    return {
+      reply: `We offer transparent Clear Aligners as well as self-ligating ceramic and metal braces for children, teens, and adults. Digital 3D intraoral scanning replaces messy impression trays and maps your tooth movement step by step.`,
+      recommendedTreatment: 'Braces / Aligners',
+      followUpQuestions: [
+        'Are clear aligners suitable for adults?',
+        'How long does aligner treatment take?',
+        'Book an orthodontic assessment',
+      ],
+    };
+  }
+  if (q.includes('time') || q.includes('hour') || q.includes('location') || q.includes('address') || q.includes('where') || q.includes('open')) {
+    return {
+      reply: `${clinicConfig.clinicName} is located at ${clinicConfig.clinicAddress}, ${clinicConfig.city}. Our clinic hours are ${clinicConfig.openingHours.weekdays}, and ${clinicConfig.openingHours.sunday}. You can call or WhatsApp us directly at ${clinicConfig.clinicPhone}.`,
+      recommendedTreatment: 'General Check-up',
+      followUpQuestions: [
+        'Book an appointment for tomorrow',
+        'Do you have parking at Sector 9-C?',
+        'What should I bring to my first visit?',
+      ],
+    };
+  }
+  if (q.includes('cost') || q.includes('price') || q.includes('fee') || q.includes('charge')) {
+    return {
+      reply: `At ${clinicConfig.clinicName}, every treatment plan includes an upfront, itemized cost estimate following a clinical and digital diagnostic assessment by ${clinicConfig.doctorName}. We provide multiple restorative and aesthetic material options so you can choose what best fits your goals and budget.`,
+      recommendedTreatment: 'General Check-up',
+      followUpQuestions: [
+        'Book a diagnostic check-up',
+        'Do you offer zirconia crowns and veneers?',
+        'How can I share my dental X-ray?',
+      ],
+    };
+  }
+
+  return {
+    reply: `Hello! I am the 24/7 AI Dental Concierge for ${clinicConfig.clinicName} in Chandigarh. I can help you with information about our 12 clinical treatments (including Dental Implants, Painless Root Canals, Smile Makeovers, Clear Aligners, and Teeth Whitening), clinic timings at Sector 9-C, or booking a consultation with ${clinicConfig.doctorName}. How can I help your smile today?`,
+    recommendedTreatment: 'General Check-up',
+    followUpQuestions: [
+      'I have tooth pain — what should I do?',
+      'Tell me about Smile Makeovers & Veneers',
+      'What are your clinic hours and address?',
+    ],
+  };
+}
+
+app.post('/api/ai-agent', async (req: Request, res: Response) => {
+  try {
+    const { message, history } = req.body;
+    if (!message || typeof message !== 'string' || !message.trim()) {
+      return res.status(400).json({ success: false, message: 'Please provide a question or message.' });
+    }
+
+    const userText = message.trim();
+    const ai = getAiClient();
+
+    if (!ai) {
+      const fallback = buildClinicFallbackAiReply(userText);
+      return res.json({
+        success: true,
+        ...fallback,
+      });
+    }
+
+    const systemInstruction = `You are the 24/7 AI Dental Concierge for "${clinicConfig.clinicName}", a premier modern dental clinic in Chandigarh, India led by ${clinicConfig.doctorName} (${clinicConfig.doctorTitle}, ${clinicConfig.doctorRole}).
+
+Clinic Details:
+- Address: ${clinicConfig.clinicAddress}, ${clinicConfig.city}, ${clinicConfig.state} (160009)
+- Phone & WhatsApp: ${clinicConfig.clinicPhone} (WhatsApp: +${clinicConfig.whatsappNumber})
+- Support Email: ${clinicConfig.clinicEmail}
+- Opening Hours: ${clinicConfig.openingHours.weekdays}; ${clinicConfig.openingHours.sunday}
+- 12 Core Services Offered:
+  1. General Dentistry (Routine check-ups, ultrasonic scaling & polishing, tooth-colored biomimetic composite fillings)
+  2. Root Canal Treatment (Single-sitting rotary endodontics, microscopic precision, painless anesthesia protocols)
+  3. Dental Implants (3D CBCT guided titanium & zirconia implants, full-arch rehabilitation)
+  4. Cosmetic Dentistry (Aesthetic bonding, enameloplasty, laser gum contouring)
+  5. Smile Makeovers (Digital Smile Design, E.max ceramic veneers, mock-up preview before treatment)
+  6. Teeth Whitening (In-office LED photo-activated whitening lifting 4-8 shades in 60 mins, custom home kits)
+  7. Braces & Orthodontics (Transparent Clear Aligners, ceramic brackets, metal braces, pediatric interceptive ortho)
+  8. Crowns & Bridges (CAD/CAM monolithic Zirconia, E.max all-ceramic crowns)
+  9. Gum Treatment (Deep scaling & root planing, laser pocket decontamination, bleeding gum care)
+  10. Wisdom Tooth Removal (3D nerve-mapped atraumatic third molar extraction)
+  11. Pediatric Dentistry (Zero-fear kids' dental care, pit & fissure sealants, fluoride therapy)
+  12. Dentures & Tooth Replacement (Flexible Valplast partials, BPS complete dentures, cast partials)
+
+Guidelines:
+- Keep answers warm, reassuring, clinically clear, and concise (2 to 4 short sentences).
+- Never diagnose definitively; always note that a personalized in-clinic examination with ${clinicConfig.doctorName} confirms the final treatment plan.
+- Pick the closest matching recommendedTreatment from: "General Check-up", "Teeth Cleaning", "Tooth Pain", "Root Canal", "Dental Implant", "Braces / Aligners", "Teeth Whitening", "Cosmetic Dentistry", "Smile Makeover", "Wisdom Tooth", "Gum Problem", "Pediatric Dentistry", or "Other".
+- Provide 2 or 3 short, helpful followUpQuestions the patient might want to ask next.`;
+
+    const recentHistory = Array.isArray(history)
+      ? history
+          .slice(-6)
+          .map((h: { sender?: string; text?: string }) =>
+            `${h.sender === 'user' ? 'Patient' : 'AI Concierge'}: ${h.text || ''}`
+          )
+          .join('\n')
+      : '';
+
+    const fullPrompt = recentHistory
+      ? `Conversation so far:\n${recentHistory}\n\nPatient's new message: ${userText}`
+      : `Patient's message: ${userText}`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.8-flash',
+      contents: fullPrompt,
+      config: {
+        systemInstruction,
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            reply: {
+              type: Type.STRING,
+              description: 'Warm, helpful, concise response from the 24/7 AI Dental Concierge.',
+            },
+            recommendedTreatment: {
+              type: Type.STRING,
+              description: 'Recommended booking treatment category if applicable.',
+            },
+            followUpQuestions: {
+              type: Type.ARRAY,
+              items: { type: Type.STRING },
+              description: '2 to 3 short suggested follow-up questions.',
+            },
+          },
+          required: ['reply', 'recommendedTreatment', 'followUpQuestions'],
+        },
+      },
+    });
+
+    const rawText = response.text;
+    if (rawText) {
+      const parsed = JSON.parse(rawText.trim());
+      return res.json({
+        success: true,
+        reply: parsed.reply,
+        recommendedTreatment: parsed.recommendedTreatment || 'General Check-up',
+        followUpQuestions: Array.isArray(parsed.followUpQuestions)
+          ? parsed.followUpQuestions.slice(0, 3)
+          : [],
+      });
+    }
+
+    const fallback = buildClinicFallbackAiReply(userText);
+    return res.json({ success: true, ...fallback });
+  } catch (error) {
+    console.error('AI Agent error, using clinic knowledge fallback:', error);
+    const fallback = buildClinicFallbackAiReply(String(req.body?.message || ''));
+    return res.json({
+      success: true,
+      ...fallback,
+    });
+  }
+});
+
+app.post('/api/chat-inquiry', (req: Request, res: Response) => {
+  try {
+    const { name, contact, channel, topic, message } = req.body;
+    if (!message || typeof message !== 'string' || !message.trim()) {
+      return res.status(400).json({ success: false, message: 'Please enter a message.' });
+    }
+
+    const senderName = (name && typeof name === 'string' && name.trim()) ? name.trim() : 'Website Visitor';
+    const senderContact = (contact && typeof contact === 'string' && contact.trim()) ? contact.trim() : 'Not provided';
+    const selectedTopic = (topic && typeof topic === 'string' && topic.trim()) ? topic.trim() : 'General Inquiry';
+    const selectedChannel: 'whatsapp' | 'email' = channel === 'email' ? 'email' : 'whatsapp';
+
+    const record: ChatInquiryRecord = {
+      id: `chat-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 5)}`,
+      name: senderName,
+      contact: senderContact,
+      channel: selectedChannel,
+      topic: selectedTopic,
+      message: message.trim(),
+      createdAt: new Date().toISOString(),
+    };
+
+    chatInquiries.unshift(record);
+
+    const formattedWhatsApp = `Hi ${clinicConfig.doctorName},
+*Topic:* ${record.topic}
+*Name:* ${record.name}
+${record.contact !== 'Not provided' ? `*Contact:* ${record.contact}\n` : ''}*Message:* ${record.message}`;
+
+    const whatsappUrl = `https://wa.me/${clinicConfig.whatsappNumber}?text=${encodeURIComponent(formattedWhatsApp)}`;
+
+    const emailSubject = `[Live Chat: ${record.topic}] Inquiry from ${record.name}`;
+    const emailBody = `Hello ${clinicConfig.doctorName} Clinic Team,
+
+You have received a direct message via the website Live Chat widget:
+
+Name: ${record.name}
+Contact: ${record.contact}
+Topic: ${record.topic}
+
+Message:
+${record.message}
+
+---
+Sent from ${clinicConfig.clinicName} Website`;
+
+    const mailtoUrl = `mailto:${clinicConfig.clinicEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+    return res.status(201).json({
+      success: true,
+      inquiry: record,
+      whatsappUrl,
+      mailtoUrl,
+      reply: selectedChannel === 'whatsapp'
+        ? `Thanks ${senderName}! Your message is ready for WhatsApp (+${clinicConfig.whatsappNumber}). Click below if WhatsApp did not open automatically.`
+        : `Thanks ${senderName}! Your message has been logged for ${clinicConfig.clinicEmail}. You can also open it directly in your email client below.`,
+    });
+  } catch (error) {
+    console.error('Error handling chat inquiry:', error);
+    return res.status(500).json({ success: false, message: 'Failed to process message.' });
+  }
 });
 
 app.put('/api/config', (req: Request, res: Response) => {
@@ -272,13 +557,9 @@ Submitted at: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
 
 // Production or Dev Middleware
 async function startServer() {
-  // Explicit static file routes for image assets (guarantees image delivery in both Dev & Prod)
-  const imagesDir = path.resolve(__dirname, 'src/assets/images');
+  // Explicit static file routes for public image assets (without intercepting Vite /src/* modules)
   const publicImagesDir = path.resolve(__dirname, 'public/assets/images');
 
-  if (fs.existsSync(imagesDir)) {
-    app.use('/src/assets/images', express.static(imagesDir));
-  }
   if (fs.existsSync(publicImagesDir)) {
     app.use('/assets/images', express.static(publicImagesDir));
     app.use('/images', express.static(publicImagesDir));

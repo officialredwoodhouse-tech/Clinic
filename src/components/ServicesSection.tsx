@@ -18,7 +18,7 @@ import { motion } from 'framer-motion';
 import { CLINIC_SERVICES } from '../data/clinicData';
 import { ServiceDetail, ClinicConfig } from '../types/clinic';
 import { ServiceDetailModal } from './ServiceDetailModal';
-import { smoothEasing, staggerContainerVariants, childFadeUpVariants } from './SectionTransition';
+import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollViewport } from './SectionTransition';
 
 const SERVICE_ICONS: Record<string, React.ElementType> = {
   'general-dentistry': Shield,
@@ -46,9 +46,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
   return (
     <motion.section
       id="services"
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#EFE9DF]/50"
     >
@@ -59,9 +59,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={scrollViewport}
           transition={{ duration: 0.7, ease: smoothEasing }}
           className="max-w-3xl mb-16 text-left"
         >
@@ -82,7 +82,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.08 }}
+          viewport={{ once: false, amount: 0.06 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {CLINIC_SERVICES.map((service) => {

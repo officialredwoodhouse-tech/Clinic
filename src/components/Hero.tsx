@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Calendar, MessageSquare, ArrowRight, Sparkles, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
 import { heroClinicImg } from '../assets/images';
 
 interface HeroProps {
   config: ClinicConfig;
   onOpenBooking: () => void;
+  onOpenAiAgent?: () => void;
 }
 
 const smoothEasing: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
+export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking, onOpenAiAgent }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const imageY = useSpring(useTransform(scrollYProgress, [0, 1], [0, 48]), {
+    stiffness: 90,
+    damping: 25,
+  });
+  const cardY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -28]), {
+    stiffness: 90,
+    damping: 25,
+  });
+
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
     'Hi Dr XYZ, I would like to consult with you regarding dental care at your Chandigarh clinic.'
   )}`;
 
   return (
-    <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
+    <section ref={sectionRef} id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
       {/* Ambient background light gradients */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -132,7 +148,10 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
             className="lg:col-span-5 relative"
           >
             {/* Visual Container */}
-            <div className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl shadow-[#192B22]/15 border border-[#EDE4D5] aspect-[4/3] lg:aspect-[16/14]">
+            <motion.div
+              style={{ y: imageY }}
+              className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl shadow-[#192B22]/15 border border-[#EDE4D5] aspect-[4/3] lg:aspect-[16/14]"
+            >
               <img
                 src={heroClinicImg}
                 alt="Dr XYZ Modern Dental Clinic Suite Chandigarh"
@@ -146,10 +165,11 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
                 <span className="w-2 h-2 rounded-full bg-[#203D32]" />
                 <span>Accepting Appointments</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Large Floating Glass Card */}
             <motion.div
+              style={{ y: cardY }}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.45, ease: smoothEasing }}
@@ -166,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
                   <p className="mt-1 text-xs sm:text-sm text-[#4E5B52] leading-relaxed">
                     Tell us what you need. Our team will help you find the right treatment with transparent care.
                   </p>
-                  <div className="mt-3.5 flex items-center gap-3">
+                  <div className="mt-3.5 flex flex-wrap items-center gap-3">
                     <button
                       type="button"
                       onClick={onOpenBooking}
@@ -176,7 +196,17 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking }) => {
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#8C6D3B]" />
                     </button>
                     <span className="text-[#C4B7A2]">·</span>
-                    <span className="text-xs text-[#6B786E]">Prompt Response</span>
+                    {onOpenAiAgent ? (
+                      <button
+                        type="button"
+                        onClick={onOpenAiAgent}
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#8C6D3B] hover:text-[#183127] transition-colors cursor-pointer"
+                      >
+                        <span>Ask 24/7 AI Agent</span>
+                      </button>
+                    ) : (
+                      <span className="text-xs text-[#6B786E]">Prompt Response</span>
+                    )}
                   </div>
                 </div>
               </div>

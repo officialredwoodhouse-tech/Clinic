@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TESTIMONIALS } from '../data/clinicData';
-import { smoothEasing } from './SectionTransition';
+import { smoothEasing, scrollViewport } from './SectionTransition';
 
 export const TestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,18 +20,18 @@ export const TestimonialsSection: React.FC = () => {
   return (
     <motion.section
       id="reviews"
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#FAF7F2]/80"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={scrollViewport}
             transition={{ duration: 0.7, ease: smoothEasing }}
             className="max-w-2xl text-left"
           >

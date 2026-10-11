@@ -2,7 +2,7 @@ import React from 'react';
 import { Calendar, MessageSquare, ArrowRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
-import { smoothEasing } from './SectionTransition';
+import { smoothEasing, scrollViewport } from './SectionTransition';
 
 interface FinalCTAProps {
   config: ClinicConfig;
@@ -16,17 +16,17 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ config, onOpenBooking }) => 
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-20 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 0.94, y: 24 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={scrollViewport}
           transition={{ duration: 0.8, delay: 0.1, ease: smoothEasing }}
           className="relative rounded-3xl overflow-hidden glass-panel-dark text-white p-8 sm:p-14 lg:p-16 text-center border border-[#CEB385]/30 shadow-2xl"
         >

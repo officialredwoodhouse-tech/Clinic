@@ -2,7 +2,7 @@ import React from 'react';
 import { Calendar, MessageSquare, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
-import { smoothEasing } from './SectionTransition';
+import { smoothEasing, scrollViewport, ScrollParallax } from './SectionTransition';
 import { smileMakeoverImg } from '../assets/images';
 
 interface FeaturedSmileProps {
@@ -17,9 +17,9 @@ export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBook
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={scrollViewport}
       transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-20 relative overflow-hidden"
     >
@@ -28,20 +28,22 @@ export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBook
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left: Large Image of a beautiful natural smile */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, scale: 0.94, x: -24 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              viewport={scrollViewport}
               transition={{ duration: 0.75, delay: 0.1, ease: smoothEasing }}
               className="lg:col-span-6 relative"
             >
-              <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border border-[#E1D5C2] bg-[#EFE8DD]">
-                <img
-                  src={smileMakeoverImg}
-                  alt="Transform Your Smile - Dr XYZ Dental Chandigarh"
-                  className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
+              <ScrollParallax offset={18}>
+                <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border border-[#E1D5C2] bg-[#EFE8DD]">
+                  <img
+                    src={smileMakeoverImg}
+                    alt="Transform Your Smile - Dr XYZ Dental Chandigarh"
+                    className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </ScrollParallax>
               <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/90 backdrop-blur-md text-xs font-semibold text-[#183127] shadow-sm border border-[#E5DAC8]">
                 <Sparkles className="w-3.5 h-3.5 text-[#8C6D3B]" />
                 <span>Aesthetic Harmony</span>
@@ -50,9 +52,9 @@ export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBook
 
             {/* Right: Glass Card Content */}
             <motion.div
-              initial={{ opacity: 0, x: 24 }}
+              initial={{ opacity: 0, x: 28 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={scrollViewport}
               transition={{ duration: 0.75, delay: 0.2, ease: smoothEasing }}
               className="lg:col-span-6 flex flex-col items-start text-left"
             >
