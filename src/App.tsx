@@ -24,6 +24,7 @@ import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
 import { LegalModal } from './components/LegalModals';
+import { smoothScrollTo } from './components/SectionTransition';
 
 export default function App() {
   const [config, setConfig] = useState<ClinicConfig>(DEFAULT_CLINIC_CONFIG);
@@ -49,10 +50,7 @@ export default function App() {
     if (treatment) {
       setPreselectedTreatment(treatment);
     }
-    const bookEl = document.getElementById('book');
-    if (bookEl) {
-      bookEl.scrollIntoView({ behavior: 'smooth' });
-    }
+    smoothScrollTo('book', 76, 700);
   };
 
   return (

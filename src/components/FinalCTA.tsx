@@ -15,26 +15,20 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ config, onOpenBooking }) => 
   )}`;
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
-      className="py-20 relative overflow-hidden"
-    >
+    <section className="py-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, scale: 0.94, y: 24 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
-          transition={{ duration: 0.8, delay: 0.1, ease: smoothEasing }}
-          className="relative rounded-3xl overflow-hidden glass-panel-dark text-white p-8 sm:p-14 lg:p-16 text-center border border-[#CEB385]/30 shadow-2xl"
+          transition={{ duration: 0.6, ease: smoothEasing }}
+          className="relative rounded-3xl overflow-hidden glass-panel-dark text-white p-8 sm:p-14 lg:p-16 text-center border border-[#CEB385]/30 shadow-2xl transform-gpu"
         >
           {/* Subtle ambient interior glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#D4AF37]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full ambient-glow-gold" />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/10 backdrop-blur-md text-xs font-semibold text-[#E8DCC4] mb-6 border border-[#CEB385]/30">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/10 text-xs font-semibold text-[#E8DCC4] mb-6 border border-[#CEB385]/30">
               <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span>Personalized Dental Excellence</span>
             </div>
@@ -71,6 +65,6 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ config, onOpenBooking }) => 
           </div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 };

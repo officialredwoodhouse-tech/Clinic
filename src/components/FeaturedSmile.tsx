@@ -16,35 +16,31 @@ export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBook
   )}`;
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
-      className="py-20 relative overflow-hidden"
-    >
+    <section className="py-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden glass-panel border border-[#E3D9C9] shadow-2xl shadow-[#183127]/10 p-6 sm:p-10 lg:p-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left: Large Image of a beautiful natural smile */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.94, x: -24 }}
-              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={scrollViewport}
-              transition={{ duration: 0.75, delay: 0.1, ease: smoothEasing }}
-              className="lg:col-span-6 relative"
+              transition={{ duration: 0.55, ease: smoothEasing }}
+              className="lg:col-span-6 relative transform-gpu"
             >
-              <ScrollParallax offset={18}>
+              <ScrollParallax offset={12}>
                 <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border border-[#E1D5C2] bg-[#EFE8DD]">
                   <img
                     src={smileMakeoverImg}
                     alt="Transform Your Smile - Dr XYZ Dental Chandigarh"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
                     referrerPolicy="no-referrer"
                   />
                 </div>
               </ScrollParallax>
-              <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/90 backdrop-blur-md text-xs font-semibold text-[#183127] shadow-sm border border-[#E5DAC8]">
+              <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/95 text-xs font-semibold text-[#183127] shadow-xs border border-[#E5DAC8]">
                 <Sparkles className="w-3.5 h-3.5 text-[#8C6D3B]" />
                 <span>Aesthetic Harmony</span>
               </div>
@@ -52,11 +48,11 @@ export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBook
 
             {/* Right: Glass Card Content */}
             <motion.div
-              initial={{ opacity: 0, x: 28 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={scrollViewport}
-              transition={{ duration: 0.75, delay: 0.2, ease: smoothEasing }}
-              className="lg:col-span-6 flex flex-col items-start text-left"
+              transition={{ duration: 0.55, delay: 0.1, ease: smoothEasing }}
+              className="lg:col-span-6 flex flex-col items-start text-left transform-gpu"
             >
               <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] mb-2">
                 Aesthetic & Restorative Care
@@ -94,6 +90,6 @@ export const FeaturedSmile: React.FC<FeaturedSmileProps> = ({ config, onOpenBook
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };

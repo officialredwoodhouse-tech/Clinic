@@ -2,6 +2,7 @@ import React from 'react';
 import { Calendar, Phone, MapPin } from 'lucide-react';
 import { ClinicConfig } from '../types/clinic';
 import { Logo } from './Logo';
+import { smoothScrollTo } from './SectionTransition';
 
 interface FooterProps {
   config: ClinicConfig;
@@ -19,20 +20,11 @@ export const Footer: React.FC<FooterProps> = ({
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
-    const targetEl = document.getElementById(targetId);
-    if (targetEl) {
-      const navHeight = 76;
-      const elementPosition = targetEl.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
+    smoothScrollTo(targetId, 76, 620);
   };
 
   return (
-    <footer className="relative pt-16 pb-24 lg:pb-12 bg-[#EDE6DC] backdrop-blur-xl border-t border-[#DFD3C0]">
+    <footer className="relative pt-16 pb-24 lg:pb-12 bg-[#EDE6DC] border-t border-[#DFD3C0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-[#DDD0BD]">
           {/* Brand Info */}

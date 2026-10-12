@@ -2,7 +2,11 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
   :root {
     --font-serif: "Playfair Display", Georgia, Cambria, serif;
@@ -12,38 +16,71 @@
     font-family: var(--font-sans);
     color: #242922;
     background-color: #F6F3EE;
+    overflow-x: clip;
+    overscroll-behavior-y: none;
+  }
+  section[id] {
+    scroll-margin-top: 84px;
   }
   h1, h2, .font-serif {
     font-family: var(--font-serif);
   }
 }
 
-/* Warm Beige and Pine Green Glassmorphism Panels */
+/* GPU-composited Warm Beige and Pine Green Panels (eliminates multi-layer backdrop-filter scroll lag) */
 .glass-panel {
-  background: rgba(255, 253, 250, 0.78);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(230, 222, 210, 0.85);
-  box-shadow: 0 20px 40px -15px rgba(25, 43, 34, 0.06), 0 1px 1px rgba(255, 255, 255, 0.9) inset;
+  background: linear-gradient(180deg, rgba(255, 253, 250, 0.96) 0%, rgba(250, 246, 239, 0.93) 100%);
+  border: 1px solid rgba(230, 222, 210, 0.9);
+  box-shadow: 0 14px 28px -12px rgba(25, 43, 34, 0.06), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .glass-panel-subtle {
-  background: rgba(250, 247, 241, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 218, 204, 0.6);
+  background: rgba(250, 247, 241, 0.92);
+  border: 1px solid rgba(226, 218, 204, 0.7);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .glass-panel-dark {
-  background: rgba(24, 49, 39, 0.92);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: linear-gradient(145deg, rgba(24, 49, 39, 0.98) 0%, rgba(19, 39, 31, 0.96) 100%);
   border: 1px solid rgba(206, 179, 133, 0.25);
-  box-shadow: 0 25px 50px -12px rgba(12, 25, 20, 0.35);
+  box-shadow: 0 20px 40px -12px rgba(12, 25, 20, 0.3);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .glass-pill {
-  background: rgba(255, 253, 249, 0.82);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(220, 210, 194, 0.8);
+  background: rgba(255, 253, 249, 0.94);
+  border: 1px solid rgba(220, 210, 194, 0.85);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Zero-filter GPU radial ambient glows (replaces costly blur-3xl repaints during scroll) */
+.ambient-glow-gold {
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.14) 0%, rgba(212, 175, 55, 0.04) 45%, transparent 70%);
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+.ambient-glow-pine {
+  background: radial-gradient(circle, rgba(32, 61, 50, 0.11) 0%, rgba(32, 61, 50, 0.03) 45%, transparent 70%);
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+.ambient-glow-warm {
+  background: radial-gradient(circle, rgba(224, 210, 182, 0.45) 0%, rgba(214, 196, 161, 0.18) 45%, transparent 72%);
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

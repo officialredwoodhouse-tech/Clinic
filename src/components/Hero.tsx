@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Calendar, MessageSquare, ArrowRight, Sparkles, MapPin } from 'lucide-react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
 import { heroClinicImg } from '../assets/images';
 
@@ -19,14 +19,8 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking, onOpenAiAgent
     offset: ['start start', 'end start'],
   });
 
-  const imageY = useSpring(useTransform(scrollYProgress, [0, 1], [0, 48]), {
-    stiffness: 90,
-    damping: 25,
-  });
-  const cardY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -28]), {
-    stiffness: 90,
-    damping: 25,
-  });
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 32]);
+  const cardY = useTransform(scrollYProgress, [0, 1], [0, -20]);
 
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
     'Hi Dr XYZ, I would like to consult with you regarding dental care at your Chandigarh clinic.'
@@ -34,15 +28,10 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking, onOpenAiAgent
 
   return (
     <section ref={sectionRef} id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
-      {/* Ambient background light gradients */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: smoothEasing }}
-        className="absolute top-10 left-1/2 -translate-x-1/2 w-[760px] h-[440px] bg-gradient-to-tr from-[#E6DCBF]/45 via-[#D6C4A1]/30 to-[#2A5243]/15 rounded-full blur-3xl pointer-events-none -z-10"
-      />
-      <div className="absolute top-44 right-10 w-[420px] h-[380px] bg-[#203D32]/10 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-80 -left-20 w-[380px] h-[340px] bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* Zero-blur GPU radial ambient lighting */}
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[780px] h-[460px] rounded-full ambient-glow-warm -z-10" />
+      <div className="absolute top-40 right-6 w-[440px] h-[400px] rounded-full ambient-glow-pine -z-10" />
+      <div className="absolute top-72 -left-20 w-[400px] h-[360px] rounded-full ambient-glow-gold -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -150,18 +139,20 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking, onOpenAiAgent
             {/* Visual Container */}
             <motion.div
               style={{ y: imageY }}
-              className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl shadow-[#192B22]/15 border border-[#EDE4D5] aspect-[4/3] lg:aspect-[16/14]"
+              className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl shadow-[#192B22]/15 border border-[#EDE4D5] aspect-[4/3] lg:aspect-[16/14] transform-gpu"
             >
               <img
                 src={heroClinicImg}
                 alt="Dr XYZ Modern Dental Clinic Suite Chandigarh"
+                decoding="async"
+                fetchPriority="high"
                 className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#12231B]/50 via-transparent to-transparent pointer-events-none" />
 
               {/* Status pill inside image */}
-              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/90 backdrop-blur-md border border-[#E5DAC8] text-xs font-semibold text-[#183127] shadow-sm">
+              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/95 border border-[#E5DAC8] text-xs font-semibold text-[#183127] shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#203D32]" />
                 <span>Accepting Appointments</span>
               </div>
@@ -170,10 +161,10 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking, onOpenAiAgent
             {/* Large Floating Glass Card */}
             <motion.div
               style={{ y: cardY }}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, delay: 0.45, ease: smoothEasing }}
-              className="relative -mt-10 sm:-mt-12 lg:absolute lg:-bottom-8 lg:-left-12 lg:mt-0 z-20 max-w-sm sm:max-w-md p-6 rounded-3xl glass-panel shadow-xl shadow-[#192B22]/10 border border-[#EDE2D1]"
+              transition={{ duration: 0.65, delay: 0.35, ease: smoothEasing }}
+              className="relative -mt-10 sm:-mt-12 lg:absolute lg:-bottom-8 lg:-left-12 lg:mt-0 z-20 max-w-sm sm:max-w-md p-6 rounded-3xl glass-panel shadow-xl shadow-[#192B22]/10 border border-[#EDE2D1] transform-gpu"
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-2xl bg-[#EFE8DB] text-[#203D32] shrink-0 border border-[#DBCFB9]">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bot, Calendar, Phone, X, ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
-import { smoothEasing } from './SectionTransition';
+import { smoothEasing, smoothScrollTo } from './SectionTransition';
 import { LiveChatWidget } from './LiveChatWidget';
 
 interface FloatingActionsProps {
@@ -32,8 +32,16 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
   };
 
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      setShowScrollTop(window.scrollY > 450);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const next = window.scrollY > 450;
+          setShowScrollTop((prev) => (prev !== next ? next : prev));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -46,7 +54,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    smoothScrollTo(0, 0, 650);
   };
 
   return (

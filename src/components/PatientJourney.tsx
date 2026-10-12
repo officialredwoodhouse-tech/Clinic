@@ -5,21 +5,17 @@ import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollView
 
 export const PatientJourney: React.FC = () => {
   return (
-    <motion.section
+    <section
       id="journey"
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-20 relative bg-[#EFE9DF]/60 border-y border-[#DDD0BC]/70"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
-          transition={{ duration: 0.7, ease: smoothEasing }}
-          className="max-w-3xl mb-16 text-left"
+          transition={{ duration: 0.55, ease: smoothEasing }}
+          className="max-w-3xl mb-16 text-left transform-gpu"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
             The Patient Journey
@@ -64,6 +60,6 @@ export const PatientJourney: React.FC = () => {
           ))}
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 };

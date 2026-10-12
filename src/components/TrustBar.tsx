@@ -8,13 +8,7 @@ const ICONS = [Cpu, HeartPulse, Sparkles, Layers];
 
 export const TrustBar: React.FC = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.7, ease: smoothEasing }}
-      className="relative py-8 -mt-4 mb-8"
-    >
+    <section className="relative py-8 -mt-4 mb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={staggerContainerVariants}
@@ -46,6 +40,6 @@ export const TrustBar: React.FC = () => {
           })}
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 };

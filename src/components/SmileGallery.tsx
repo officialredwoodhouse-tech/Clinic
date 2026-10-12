@@ -26,22 +26,18 @@ export const SmileGallery: React.FC = () => {
   const currentItem: GalleryItem = filteredItems[activeCaseIndex] || filteredItems[0] || GALLERY_ITEMS[0];
 
   return (
-    <motion.section
+    <section
       id="gallery"
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
-          transition={{ duration: 0.7, ease: smoothEasing }}
-          className="max-w-3xl mb-12 text-left"
+          transition={{ duration: 0.55, ease: smoothEasing }}
+          className="max-w-3xl mb-12 text-left transform-gpu"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
             Clinical Case Studies
@@ -106,6 +102,8 @@ export const SmileGallery: React.FC = () => {
                   <img
                     src={currentItem.afterImage}
                     alt={`${currentItem.title} After`}
+                    loading="lazy"
+                    decoding="async"
                     className="absolute inset-0 w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                   />
@@ -118,6 +116,8 @@ export const SmileGallery: React.FC = () => {
                     <img
                       src={currentItem.beforeImage}
                       alt={`${currentItem.title} Initial State`}
+                      loading="lazy"
+                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover max-w-none"
                       style={{ width: '100%', minWidth: '100%' }}
                       referrerPolicy="no-referrer"
@@ -206,6 +206,6 @@ export const SmileGallery: React.FC = () => {
           </p>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };

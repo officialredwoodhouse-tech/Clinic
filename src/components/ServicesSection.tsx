@@ -44,26 +44,22 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
 
   return (
-    <motion.section
+    <section
       id="services"
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#EFE9DF]/50"
     >
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#203D32]/10 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full ambient-glow-pine -z-10" />
+      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] rounded-full ambient-glow-gold -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
-          transition={{ duration: 0.7, ease: smoothEasing }}
-          className="max-w-3xl mb-16 text-left"
+          transition={{ duration: 0.55, ease: smoothEasing }}
+          className="max-w-3xl mb-16 text-left transform-gpu"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-3">
             Clinical Services
@@ -82,7 +78,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.06 }}
+          viewport={scrollViewport}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {CLINIC_SERVICES.map((service) => {
@@ -144,6 +140,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
         }}
         config={config}
       />
-    </motion.section>
+    </section>
   );
 };

@@ -14,40 +14,38 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
   const [showFullBio, setShowFullBio] = useState(false);
 
   return (
-    <motion.section
+    <section
       id="about"
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-20 relative overflow-hidden"
     >
       {/* Background ambient accents */}
-      <div className="absolute top-1/2 -left-48 w-96 h-96 bg-[#203D32]/10 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 -left-48 w-96 h-96 rounded-full ambient-glow-pine -z-10" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full ambient-glow-gold -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Doctor Portrait & Glass Profile Card */}
           <motion.div
-            initial={{ opacity: 0, x: -32 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={scrollViewport}
-            transition={{ duration: 0.8, delay: 0.1, ease: smoothEasing }}
-            className="lg:col-span-5 relative order-2 lg:order-1"
+            transition={{ duration: 0.6, ease: smoothEasing }}
+            className="lg:col-span-5 relative order-2 lg:order-1 transform-gpu"
           >
-            <ScrollParallax offset={22}>
+            <ScrollParallax offset={14}>
               <div className="relative mx-auto max-w-md rounded-3xl overflow-hidden shadow-2xl shadow-[#183127]/15 border border-[#E3D9C9] bg-[#EFE8DD] aspect-[3/4]">
                 <img
                   src={doctorXyzImg}
                   alt="Dr XYZ - Dentist and Dental Surgeon in Chandigarh"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#14261E]/60 via-[#14261E]/10 to-transparent pointer-events-none" />
 
                 {/* Verified badge */}
-                <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF7F2]/90 backdrop-blur-md text-[11px] font-semibold text-[#183127] shadow-sm border border-[#E3D7C5]">
+                <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF7F2]/95 text-[11px] font-semibold text-[#183127] shadow-xs border border-[#E3D7C5]">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#8C6D3B]" />
                   <span>Verified Practice</span>
                 </div>
@@ -56,10 +54,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
 
             {/* Glass Profile Card */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={scrollViewport}
-              transition={{ duration: 0.7, delay: 0.25, ease: smoothEasing }}
+              transition={{ duration: 0.55, delay: 0.15, ease: smoothEasing }}
               className="relative -mt-14 sm:-mt-16 mx-4 sm:mx-6 p-6 rounded-3xl glass-panel shadow-xl shadow-[#183127]/10 border border-[#E3D9C9] z-10"
             >
               <div className="flex items-center justify-between">
@@ -97,11 +95,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
 
           {/* About Copy */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: smoothEasing }}
-            className="lg:col-span-7 flex flex-col items-start text-left order-1 lg:order-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={scrollViewport}
+            transition={{ duration: 0.6, delay: 0.1, ease: smoothEasing }}
+            className="lg:col-span-7 flex flex-col items-start text-left order-1 lg:order-2 transform-gpu"
           >
             <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] mb-3">
               About Dr XYZ
@@ -165,6 +163,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ config, onOpenBookin
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };

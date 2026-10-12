@@ -18,22 +18,18 @@ export const TestimonialsSection: React.FC = () => {
   const current = TESTIMONIALS[currentIndex];
 
   return (
-    <motion.section
+    <section
       id="reviews"
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#FAF7F2]/80"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={scrollViewport}
-            transition={{ duration: 0.7, ease: smoothEasing }}
-            className="max-w-2xl text-left"
+            transition={{ duration: 0.55, ease: smoothEasing }}
+            className="max-w-2xl text-left transform-gpu"
           >
             <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
               Patient Experiences
@@ -117,6 +113,6 @@ export const TestimonialsSection: React.FC = () => {
           </AnimatePresence>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };

@@ -23,22 +23,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
   )}`;
 
   return (
-    <motion.section
+    <section
       id="contact"
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#FAF7F2]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
-          transition={{ duration: 0.7, ease: smoothEasing }}
-          className="max-w-3xl mb-16 text-left"
+          transition={{ duration: 0.55, ease: smoothEasing }}
+          className="max-w-3xl mb-16 text-left transform-gpu"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
             Location & Access
@@ -205,6 +201,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config, onOpenBo
           </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };

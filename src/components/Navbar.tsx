@@ -1,75 +1,93 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, Calendar, Menu, X } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
 import { Logo } from './Logo';
+import { smoothScrollTo } from './SectionTransition';
 
 interface NavbarProps {
   config: ClinicConfig;
   onOpenBooking: (treatment?: string) => void;
 }
 
+const NAV_LINKS = [
+  { label: 'Home', href: '#hero', id: 'hero' },
+  { label: 'About', href: '#about', id: 'about' },
+  { label: 'Services', href: '#services', id: 'services' },
+  { label: 'Technology', href: '#technology', id: 'technology' },
+  { label: 'Smile Gallery', href: '#gallery', id: 'gallery' },
+  { label: 'Reviews', href: '#reviews', id: 'reviews' },
+  { label: 'FAQ', href: '#faq', id: 'faq' },
+  { label: 'Contact', href: '#contact', id: 'contact' },
+];
+
 export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('hero');
+  const sectionOffsetsRef = useRef<Array<{ id: string; top: number }>>([]);
 
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const navLinks = [
-    { label: 'Home', href: '#hero', id: 'hero' },
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Services', href: '#services', id: 'services' },
-    { label: 'Technology', href: '#technology', id: 'technology' },
-    { label: 'Smile Gallery', href: '#gallery', id: 'gallery' },
-    { label: 'Reviews', href: '#reviews', id: 'reviews' },
-    { label: 'FAQ', href: '#faq', id: 'faq' },
-    { label: 'Contact', href: '#contact', id: 'contact' },
-  ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    let ticking = false;
 
-      // Active section detection
-      const scrollPosition = window.scrollY + 140;
-      for (let i = navLinks.length - 1; i >= 0; i--) {
-        const section = document.getElementById(navLinks[i].id);
-        if (section) {
-          const top = section.offsetTop;
-          if (scrollPosition >= top) {
-            setActiveSection(navLinks[i].id);
-            break;
-          }
+    const measureOffsets = () => {
+      const scrollY = window.scrollY;
+      sectionOffsetsRef.current = NAV_LINKS.map((link) => {
+        const el = document.getElementById(link.id);
+        return {
+          id: link.id,
+          top: el ? el.getBoundingClientRect().top + scrollY : 0,
+        };
+      });
+    };
+
+    const updateOnScroll = () => {
+      const y = window.scrollY;
+      const nextScrolled = y > 20;
+      setIsScrolled((prev) => (prev !== nextScrolled ? nextScrolled : prev));
+
+      // Active section lookup using cached offsets (zero DOM layout reads during scroll)
+      const scrollPosition = y + 140;
+      const offsets = sectionOffsetsRef.current;
+      let matchedId = 'hero';
+      for (let i = offsets.length - 1; i >= 0; i--) {
+        if (offsets[i].top > 0 && scrollPosition >= offsets[i].top) {
+          matchedId = offsets[i].id;
+          break;
         }
+      }
+      setActiveSection((prev) => (prev !== matchedId ? matchedId : prev));
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateOnScroll);
+        ticking = true;
       }
     };
 
+    measureOffsets();
+    updateOnScroll();
+    // Re-measure after images/fonts settle
+    const timer = window.setTimeout(measureOffsets, 800);
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', measureOffsets, { passive: true });
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', measureOffsets);
+    };
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
-    const targetEl = document.getElementById(targetId);
-    if (targetEl) {
-      const navHeight = 76;
-      const elementPosition = targetEl.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-      setActiveSection(targetId);
-    }
+    setActiveSection(targetId);
+    smoothScrollTo(targetId, 76, 620);
   };
 
   const whatsappDirectUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
@@ -80,15 +98,15 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
     <>
       {/* Top subtle reading progress indicator bar */}
       <motion.div
-        style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#203D32] via-[#8C6D3B] to-[#D4AF37] origin-left z-50 pointer-events-none"
+        style={{ scaleX: scrollYProgress }}
+        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#203D32] via-[#8C6D3B] to-[#D4AF37] origin-left z-50 pointer-events-none transform-gpu"
       />
 
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 py-3.5 transition-[background-color,border-color,box-shadow] duration-200 transform-gpu ${
           isScrolled
-            ? 'bg-[#F4EFEA]/90 backdrop-blur-xl border-b border-[#E2D8C8] shadow-sm py-3'
-            : 'bg-[#F7F3ED]/70 backdrop-blur-md border-b border-[#EDE4D6]/70 py-4.5'
+            ? 'bg-[#F4EFEA]/96 backdrop-blur-md border-b border-[#E2D8C8] shadow-xs'
+            : 'bg-[#F7F3ED]/90 border-b border-[#EDE4D6]/70'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
 
             {/* Zone 2: 4-8 clean text navigation links with smooth animated indicator */}
             <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-[#48534C]">
-              {navLinks.map((link) => {
+              {NAV_LINKS.map((link) => {
                 const isActive = activeSection === link.id;
                 return (
                   <a
@@ -204,7 +222,7 @@ export const Navbar: React.FC<NavbarProps> = ({ config, onOpenBooking }) => {
                 </div>
 
                 <div className="mt-6 flex flex-col gap-2">
-                  {navLinks.map((link) => {
+                  {NAV_LINKS.map((link) => {
                     const isActive = activeSection === link.id;
                     return (
                       <a

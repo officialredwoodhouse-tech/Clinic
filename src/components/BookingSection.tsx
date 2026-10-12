@@ -217,25 +217,21 @@ _Hi Dr XYZ, I have submitted my appointment details above. Please confirm my slo
   };
 
   return (
-    <motion.section
+    <section
       id="book"
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={scrollViewport}
-      transition={{ duration: 0.8, ease: smoothEasing }}
       className="py-24 relative overflow-hidden bg-[#FAF7F2]"
     >
-      {/* Background ambient blur */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-tr from-[#E6DCBF]/40 via-[#D6C4A1]/20 to-[#2A5243]/15 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full ambient-glow-warm -z-10" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
-          transition={{ duration: 0.7, ease: smoothEasing }}
-          className="text-center max-w-2xl mx-auto mb-14"
+          transition={{ duration: 0.55, ease: smoothEasing }}
+          className="text-center max-w-2xl mx-auto mb-14 transform-gpu"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
             Priority Scheduling
@@ -508,6 +504,6 @@ _Hi Dr XYZ, I have submitted my appointment details above. Please confirm my slo
         onClose={() => setCreatedAppointment(null)}
         config={config}
       />
-    </motion.section>
+    </section>
   );
 };
