@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Calendar, MessageSquare, ArrowRight, Sparkles, MapPin } from 'lucide-react';
+import { Calendar, MessageSquare, ArrowRight, Sparkles, MapPin, Bot } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ClinicConfig } from '../types/clinic';
 import { heroClinicImg } from '../assets/images';
@@ -19,191 +19,137 @@ export const Hero: React.FC<HeroProps> = ({ config, onOpenBooking, onOpenAiAgent
     offset: ['start start', 'end start'],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, 32]);
-  const cardY = useTransform(scrollYProgress, [0, 1], [0, -20]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 28]);
 
   const whatsappUrl = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(
     'Hi Dr XYZ, I would like to consult with you regarding dental care at your Chandigarh clinic.'
   )}`;
 
   return (
-    <section ref={sectionRef} id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
+    <section ref={sectionRef} id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-20 overflow-hidden border-b border-[#D5E7ED] bg-[#FFFFFF]">
       {/* Zero-blur GPU radial ambient lighting */}
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[780px] h-[460px] rounded-full ambient-glow-warm -z-10" />
-      <div className="absolute top-40 right-6 w-[440px] h-[400px] rounded-full ambient-glow-pine -z-10" />
-      <div className="absolute top-72 -left-20 w-[400px] h-[360px] rounded-full ambient-glow-gold -z-10" />
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[850px] h-[480px] rounded-full ambient-glow-ice -z-10" />
+      <div className="absolute top-44 right-6 w-[450px] h-[400px] rounded-full ambient-glow-teal -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Typography & CTAs with staggered fade-in */}
+        {/* Structured Hero Header Block */}
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-12 sm:mb-16">
+          {/* Subtitle / Philosophy Tagline */}
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: smoothEasing }}
-            className="lg:col-span-7 flex flex-col items-start text-left"
+            transition={{ duration: 0.55, ease: smoothEasing }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF4F7] border border-[#CEE3E9] text-xs font-mono tracking-wider text-[#16324F] uppercase mb-6"
           >
-            {/* Trust Indicator / Location Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: smoothEasing }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EFE9DF]/80 backdrop-blur-md border border-[#DDD3C2] shadow-xs mb-6 text-xs font-medium text-[#2E3B33]"
-            >
-              <span className="w-2 h-2 rounded-full bg-[#203D32] animate-pulse" />
-              <span>Personalized Care</span>
-              <span className="text-[#BDB19C]">·</span>
-              <span>Modern Precision</span>
-              <span className="text-[#BDB19C]">·</span>
-              <span className="flex items-center gap-1 text-[#183127] font-semibold">
-                <MapPin className="w-3.5 h-3.5 text-[#8C6D3B]" />
-                Chandigarh
-              </span>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, delay: 0.2, ease: smoothEasing }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#192B22] tracking-tight leading-[1.12] mb-6 text-balance"
-            >
-              Your Smile.{' '}
-              <span className="block italic font-normal text-[#203D32]">
-                Designed With Precision.
-              </span>
-            </motion.h1>
-
-            {/* Subheading */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: smoothEasing }}
-              className="text-base sm:text-lg text-[#46534A] max-w-xl leading-relaxed mb-8"
-            >
-              Advanced dental care in Chandigarh, combining clinical expertise, modern technology and a comfortable patient-first experience.
-            </motion.p>
-
-            {/* Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: smoothEasing }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
-            >
-              <button
-                type="button"
-                onClick={onOpenBooking}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 text-sm font-semibold text-[#FAF7F2] bg-[#183127] hover:bg-[#203D32] rounded-2xl shadow-lg shadow-[#183127]/25 hover:shadow-[#183127]/35 transition-all duration-200 active:scale-98 cursor-pointer group border border-[#2B5443]"
-              >
-                <Calendar className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform" />
-                <span>Book an Appointment</span>
-                <ArrowRight className="w-4 h-4 ml-1 opacity-80 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 text-sm font-semibold text-[#183127] bg-[#EFE8DC] hover:bg-[#E5DCCF] border border-[#D5C9B6] rounded-2xl shadow-xs transition-all duration-200 active:scale-98"
-              >
-                <MessageSquare className="w-4 h-4 text-[#203D32]" />
-                <span>Chat on WhatsApp</span>
-              </a>
-            </motion.div>
-
-            {/* Doctor Note Preview */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: smoothEasing }}
-              className="mt-10 pt-6 border-t border-[#DFD5C4] flex items-center gap-4 text-xs text-[#5E6D62]"
-            >
-              <div className="flex -space-x-1.5 overflow-hidden">
-                <span className="inline-block h-8 w-8 rounded-full ring-2 ring-[#EDE4D5] bg-[#203D32] text-[#F3EFE7] font-serif font-bold flex items-center justify-center text-[10px]">
-                  XYZ
-                </span>
-              </div>
-              <p>
-                Led by <strong className="text-[#192B22] font-semibold">{config.doctorName}</strong> · Sector 9-C, Madhya Marg
-              </p>
-            </motion.div>
+            <span className="w-2 h-2 rounded-full bg-[#2A9D8F]" />
+            <span>A modern approach to oral health, designed for your comfort</span>
           </motion.div>
 
-          {/* Right Column: Visual Anchor & Floating Glass Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.25, ease: smoothEasing }}
-            className="lg:col-span-5 relative"
+          {/* Primary Editorial Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: smoothEasing }}
+            className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-[#16324F] tracking-tight leading-[1.08] mb-6 text-balance"
           >
-            {/* Visual Container */}
-            <motion.div
-              style={{ y: imageY }}
-              className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl shadow-[#192B22]/15 border border-[#EDE4D5] aspect-[4/3] lg:aspect-[16/14] transform-gpu"
+            A Higher Standard <br className="hidden sm:inline" />
+            <span className="italic font-normal text-[#2A9D8F]">of Dental Care.</span>
+          </motion.h1>
+
+          {/* Secondary Subtitle with Studio Details */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: smoothEasing }}
+            className="text-base sm:text-lg text-[#667085] max-w-2xl leading-relaxed mb-8"
+          >
+            Welcome to <strong className="text-[#16324F] font-semibold">{config.clinicName}</strong> in Chandigarh. Led by{' '}
+            <strong className="text-[#16324F] font-semibold">{config.doctorName}</strong>, combining clinical precision, modern radiography, and patient-first serenity.
+          </motion.p>
+
+          {/* Structured Call to Action Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: smoothEasing }}
+            className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto"
+          >
+            <button
+              type="button"
+              onClick={onOpenBooking}
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-xs font-bold uppercase tracking-wider text-[#FFFFFF] bg-[#2A9D8F] hover:bg-[#238579] rounded-xl shadow-md shadow-[#2A9D8F]/25 transition-all active:scale-98 cursor-pointer border border-[#238579] group"
             >
+              <Calendar className="w-4 h-4 text-[#FFFFFF] group-hover:scale-110 transition-transform" />
+              <span>Book an Appointment</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#FFFFFF] group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 text-xs font-bold uppercase tracking-wider text-[#16324F] bg-[#EAF4F7] hover:bg-[#D9EDF2] border border-[#CEE3E9] rounded-xl transition-all active:scale-98"
+            >
+              <MessageSquare className="w-4 h-4 text-[#2A9D8F]" />
+              <span>WhatsApp Direct</span>
+            </a>
+
+            {onOpenAiAgent && (
+              <button
+                type="button"
+                onClick={onOpenAiAgent}
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-semibold text-[#2A9D8F] hover:text-[#16324F] bg-[#FFFFFF] hover:bg-[#EAF4F7] border border-[#CEE3E9] rounded-xl transition-colors cursor-pointer shadow-xs"
+              >
+                <Bot className="w-4 h-4 text-[#2A9D8F]" />
+                <span>24/7 AI Agent</span>
+              </button>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Structured Architectural Showcase Frame */}
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.99 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.75, delay: 0.25, ease: smoothEasing }}
+          className="relative rounded-3xl overflow-hidden border border-[#D5E7ED] bg-[#EAF4F7] shadow-xl shadow-[#16324F]/8"
+        >
+          {/* Top Frame Status Header */}
+          <div className="flex flex-wrap items-center justify-between px-6 py-3.5 bg-[#FFFFFF] border-b border-[#D5E7ED] text-xs font-mono text-[#667085]">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#2A9D8F] animate-pulse" />
+              <span className="font-semibold text-[#16324F] uppercase tracking-wider">
+                [ CLINIC ACTIVE · SECTOR 9-C CHANDIGARH ]
+              </span>
+            </div>
+            <div className="hidden sm:flex items-center gap-4 text-[11px] text-[#667085]">
+              <span>HOURS: {config.openingHours.weekdays}</span>
+              <span>·</span>
+              <span className="text-[#16324F] font-semibold">TEL: {config.clinicPhone}</span>
+            </div>
+          </div>
+
+          {/* Main Visual Image */}
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] lg:aspect-[24/10] overflow-hidden">
+            <motion.div style={{ y: imageY }} className="w-full h-full transform-gpu">
               <img
                 src={heroClinicImg}
-                alt="Dr XYZ Modern Dental Clinic Suite Chandigarh"
+                alt="Dr XYZ Dental Clinic Chandigarh Interior"
                 decoding="async"
                 fetchPriority="high"
                 className="w-full h-full object-cover transform hover:scale-102 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#12231B]/50 via-transparent to-transparent pointer-events-none" />
-
-              {/* Status pill inside image */}
-              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/95 border border-[#E5DAC8] text-xs font-semibold text-[#183127] shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#203D32]" />
-                <span>Accepting Appointments</span>
-              </div>
             </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#16324F]/40 via-transparent to-transparent pointer-events-none" />
 
-            {/* Large Floating Glass Card */}
-            <motion.div
-              style={{ y: cardY }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.35, ease: smoothEasing }}
-              className="relative -mt-10 sm:-mt-12 lg:absolute lg:-bottom-8 lg:-left-12 lg:mt-0 z-20 max-w-sm sm:max-w-md p-6 rounded-3xl glass-panel shadow-xl shadow-[#192B22]/10 border border-[#EDE2D1] transform-gpu"
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-[#EFE8DB] text-[#203D32] shrink-0 border border-[#DBCFB9]">
-                  <Sparkles className="w-5 h-5 text-[#8C6D3B]" />
-                </div>
-                <div>
-                  <h2 className="text-base font-semibold text-[#183127]">
-                    Your First Step Starts Here
-                  </h2>
-                  <p className="mt-1 text-xs sm:text-sm text-[#4E5B52] leading-relaxed">
-                    Tell us what you need. Our team will help you find the right treatment with transparent care.
-                  </p>
-                  <div className="mt-3.5 flex flex-wrap items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={onOpenBooking}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#183127] hover:text-[#284D3F] transition-colors cursor-pointer group"
-                    >
-                      <span>Book Appointment</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#8C6D3B]" />
-                    </button>
-                    <span className="text-[#C4B7A2]">·</span>
-                    {onOpenAiAgent ? (
-                      <button
-                        type="button"
-                        onClick={onOpenAiAgent}
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#8C6D3B] hover:text-[#183127] transition-colors cursor-pointer"
-                      >
-                        <span>Ask 24/7 AI Agent</span>
-                      </button>
-                    ) : (
-                      <span className="text-xs text-[#6B786E]">Prompt Response</span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
+            {/* Inset Badge */}
+            <div className="absolute bottom-5 left-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FFFFFF]/95 backdrop-blur-md border border-[#D5E7ED] text-xs font-semibold text-[#16324F] shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-[#2A9D8F]" />
+              <span>Architectural Dental Suite · Sector 9-C, Madhya Marg</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

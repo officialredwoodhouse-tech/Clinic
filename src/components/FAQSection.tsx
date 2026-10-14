@@ -12,26 +12,23 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section
-      id="faq"
-      className="py-24 relative overflow-hidden bg-[#EFE9DF]/50 border-t border-[#E0D5C3]"
-    >
+    <section id="faq" className="py-24 relative overflow-hidden bg-[#FFFFFF] border-b border-[#D5E7ED]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={scrollViewport}
           transition={{ duration: 0.55, ease: smoothEasing }}
-          className="text-center max-w-2xl mx-auto mb-16 transform-gpu"
+          className="text-left mb-16 transform-gpu"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
-            Clear Answers
+          <span className="font-mono text-xs font-bold text-[#2A9D8F] tracking-widest uppercase block mb-2">
+            [ FREQUENTLY ASKED QUESTIONS ]
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#183127] tracking-tight">
-            Frequently Asked Questions
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#16324F] tracking-tight">
+            Clear Answers
           </h2>
-          <p className="mt-3 text-base text-[#4C5950]">
-            Everything you need to know about scheduling, treatments, and preparing for your visit.
+          <p className="mt-3 text-base sm:text-lg text-[#667085]">
+            Everything you need to know about scheduling, procedures, and preparing for your visit.
           </p>
         </motion.div>
 
@@ -44,26 +41,33 @@ export const FAQSection: React.FC = () => {
         >
           {FAQ_ITEMS.map((item, idx) => {
             const isOpen = openIndex === idx;
+            const numIndex = `(${String(idx + 1).padStart(2, '0')})`;
+
             return (
               <motion.div
                 key={idx}
                 variants={childFadeUpVariants}
-                className="rounded-2xl glass-panel border border-[#E3D9C9] overflow-hidden transition-colors duration-200"
+                className="rounded-2xl bg-[#FFFFFF] border border-[#D5E7ED] overflow-hidden transition-all duration-200 shadow-xs"
               >
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left gap-4 hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+                  className="w-full px-6 py-5 flex items-center justify-between text-left gap-4 hover:bg-[#EAF4F7]/40 transition-colors cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-serif font-semibold text-[#183127] text-base sm:text-lg">
-                    {item.question}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-xs font-bold text-[#2A9D8F]">
+                      {numIndex}
+                    </span>
+                    <span className="font-serif font-bold text-[#16324F] text-base sm:text-lg">
+                      {item.question}
+                    </span>
+                  </div>
                   <div
-                    className={`p-1.5 rounded-full transition-transform duration-200 shrink-0 ${
+                    className={`p-1.5 rounded-lg transition-transform duration-200 shrink-0 ${
                       isOpen
-                        ? 'rotate-180 bg-[#183127] text-[#FAF7F2]'
-                        : 'bg-[#EFE8DD] text-[#4C5950]'
+                        ? 'rotate-180 bg-[#2A9D8F] text-white'
+                        : 'bg-[#EAF4F7] text-[#16324F]'
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -77,9 +81,9 @@ export const FAQSection: React.FC = () => {
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.35, ease: smoothEasing }}
-                      className="overflow-hidden border-t border-[#EAE0D2]"
+                      className="overflow-hidden border-t border-[#EAF4F7]"
                     >
-                      <div className="px-6 pb-6 pt-3 text-sm text-[#4E5A51] leading-relaxed">
+                      <div className="px-6 pb-6 pt-4 text-sm text-[#667085] leading-relaxed">
                         {item.answer}
                       </div>
                     </motion.div>

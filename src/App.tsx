@@ -24,6 +24,7 @@ import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
 import { LegalModal } from './components/LegalModals';
+import { MarqueeBanner } from './components/MarqueeBanner';
 import { smoothScrollTo } from './components/SectionTransition';
 
 export default function App() {
@@ -54,76 +55,75 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F3EE] text-[#242922] font-sans selection:bg-[#203D32]/25 selection:text-[#183127] relative">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#667085] font-sans selection:bg-[#2A9D8F]/25 selection:text-[#16324F] relative">
       {/* Top Navbar */}
       <Navbar
         config={config}
         onOpenBooking={() => handleOpenBooking()}
       />
 
-      {/* Main Page Flow */}
+      {/* Main Page Flow - Wix WH-1187 Layout Structure */}
       <main>
-        {/* 1. Hero */}
+        {/* Section 1: Hero ("A Higher Standard of Dental Care") */}
         <Hero
           config={config}
           onOpenBooking={() => handleOpenBooking()}
           onOpenAiAgent={() => setIsAiAgentOpen(true)}
         />
 
-        {/* 2. Trust Bar */}
-        <TrustBar />
-
-        {/* 3. About Dr XYZ */}
+        {/* Section 2: Studio Philosophy / About ([ STUDIO PHILOSOPHY ]) */}
         <AboutSection
           config={config}
           onOpenBooking={() => handleOpenBooking()}
         />
 
-        {/* 4. Complete Services (12 Services + Dynamic Detail Modal) */}
+        {/* Section 3: Clinical Services / Expertise ([ CLINICAL SERVICES ]) */}
         <ServicesSection
           config={config}
           onSelectServiceForBooking={(treatmentName) => handleOpenBooking(treatmentName)}
         />
 
-        {/* 5. Featured Smile Section */}
-        <FeaturedSmile
-          config={config}
-          onOpenBooking={() => handleOpenBooking('Smile Makeover')}
-        />
-
-        {/* 6. Technology & Digital Workflow */}
-        <TechnologySection />
-
-        {/* 7. Patient Journey Timeline */}
-        <PatientJourney />
-
-        {/* 8. Before & After Smile Gallery */}
-        <SmileGallery />
-
-        {/* 9. Testimonials */}
+        {/* Section 4: Patient Reviews / Testimonials ([ TESTIMONIALS ]) */}
         <TestimonialsSection />
 
-        {/* 10. Why Choose Dr XYZ */}
-        <WhyChooseUs />
+        {/* Section 5: Editorial Call to Action ("Ready for a healthier smile?") */}
+        <FinalCTA
+          config={config}
+          onOpenBooking={() => handleOpenBooking()}
+        />
 
-        {/* 11. FAQ Accordion */}
-        <FAQSection />
+        {/* Section 6: Editorial Marquee Ribbon */}
+        <MarqueeBanner clinicName={config.clinicName.toUpperCase()} variant="light" />
 
-        {/* 12. Book an Appointment Dedicated Section */}
+        {/* Section 7: Dedicated Consultation & Booking Desk */}
         <BookingSection
           config={config}
           preselectedTreatment={preselectedTreatment}
           onClearPreselected={() => setPreselectedTreatment(undefined)}
         />
 
-        {/* 13. Contact Us with Map & Hours */}
-        <ContactSection
-          config={config}
-          onOpenBooking={() => handleOpenBooking()}
-        />
+        {/* Section 8: Studio Standards & Trust Bar */}
+        <TrustBar />
 
-        {/* 14. Final Call to Action */}
-        <FinalCTA
+        {/* Section 9: Featured Smile & Before & After Aesthetic Gallery */}
+        <FeaturedSmile
+          config={config}
+          onOpenBooking={() => handleOpenBooking('Smile Makeover')}
+        />
+        <SmileGallery />
+
+        {/* Section 10: Advanced Clinical Technology & Diagnostic Workflow */}
+        <TechnologySection />
+
+        {/* Section 11: Patient Journey & Practice Advantages */}
+        <PatientJourney />
+        <WhyChooseUs />
+
+        {/* Section 12: Frequently Asked Questions */}
+        <FAQSection />
+
+        {/* Section 13: Contact Information & Surgery Location */}
+        <ContactSection
           config={config}
           onOpenBooking={() => handleOpenBooking()}
         />

@@ -28,7 +28,7 @@ export const SmileGallery: React.FC = () => {
   return (
     <section
       id="gallery"
-      className="py-24 relative overflow-hidden"
+      className="py-24 relative overflow-hidden bg-[#FFFFFF] border-b border-[#D5E7ED]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -39,13 +39,13 @@ export const SmileGallery: React.FC = () => {
           transition={{ duration: 0.55, ease: smoothEasing }}
           className="max-w-3xl mb-12 text-left transform-gpu"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
-            Clinical Case Studies
+          <span className="font-mono text-xs font-bold text-[#2A9D8F] tracking-widest uppercase block mb-2">
+            [ CLINICAL CASE STUDIES ]
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#183127] tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#16324F] tracking-tight">
             Smile Transformations
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#47544B]">
+          <p className="mt-4 text-base sm:text-lg text-[#667085]">
             Explore aesthetic and restorative outcomes designed with anatomical balance and natural tooth gradation.
           </p>
         </motion.div>
@@ -62,8 +62,8 @@ export const SmileGallery: React.FC = () => {
               }}
               className={`px-4 py-2 text-xs font-semibold rounded-full whitespace-nowrap transition-all cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-[#183127] text-[#FAF7F2] shadow-sm'
-                  : 'bg-[#EFE8DD] text-[#344138] hover:text-[#183127] hover:bg-[#E5DCCF] border border-[#D5C9B5]'
+                  ? 'bg-[#2A9D8F] text-[#FFFFFF] shadow-sm'
+                  : 'bg-[#EAF4F7] text-[#16324F] hover:text-[#2A9D8F] hover:bg-[#D9EDF2] border border-[#CEE3E9]'
               }`}
             >
               {cat}
@@ -80,12 +80,12 @@ export const SmileGallery: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.45, ease: smoothEasing }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-8 rounded-3xl glass-panel border border-[#E3D9C9] shadow-xl shadow-[#183127]/5"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-8 rounded-3xl bg-[#FFFFFF] border border-[#D5E7ED] shadow-xl shadow-[#16324F]/5"
             >
               {/* Visual Slider Column */}
               <div className="lg:col-span-7">
                 <div
-                  className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#12231B] select-none shadow-md border border-[#DED0BC] cursor-ew-resize group"
+                  className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#16324F] select-none shadow-md border border-[#D5E7ED] cursor-ew-resize group"
                   onMouseMove={(e) => {
                     const rect = e.currentTarget.getBoundingClientRect();
                     const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
@@ -123,29 +123,29 @@ export const SmileGallery: React.FC = () => {
                       referrerPolicy="no-referrer"
                     />
                     {/* Subtle tint */}
-                    <div className="absolute inset-0 bg-[#12231B]/15" />
+                    <div className="absolute inset-0 bg-[#16324F]/15" />
                   </div>
 
                   {/* Vertical Divider Line */}
                   <div
-                    className="absolute top-0 bottom-0 w-1 bg-[#FAF7F2] shadow-lg pointer-events-none"
+                    className="absolute top-0 bottom-0 w-1 bg-[#FFFFFF] shadow-lg pointer-events-none"
                     style={{ left: `${sliderPosition}%` }}
                   >
-                    <div className="absolute top-1/2 -translate-y-1/2 -left-3.5 w-8 h-8 rounded-full bg-[#FAF7F2] text-[#183127] shadow-md flex items-center justify-center text-[10px] font-bold border border-[#DDD0BC]">
-                      <SlidersHorizontal className="w-3.5 h-3.5" />
+                    <div className="absolute top-1/2 -translate-y-1/2 -left-3.5 w-8 h-8 rounded-full bg-[#FFFFFF] text-[#16324F] shadow-md flex items-center justify-center text-[10px] font-bold border border-[#D5E7ED]">
+                      <SlidersHorizontal className="w-3.5 h-3.5 text-[#2A9D8F]" />
                     </div>
                   </div>
 
                   {/* Labels */}
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#12231B]/70 backdrop-blur-md text-[#FAF7F2] text-[11px] font-semibold tracking-wide">
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[#16324F]/75 backdrop-blur-md text-[#FFFFFF] text-[11px] font-semibold tracking-wide">
                     Before
                   </div>
-                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#183127]/85 backdrop-blur-md text-[#E8DCC4] text-[11px] font-semibold tracking-wide border border-[#D4AF37]/30">
+                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#2A9D8F]/90 backdrop-blur-md text-[#FFFFFF] text-[11px] font-semibold tracking-wide border border-[#238579]/40">
                     After
                   </div>
 
                   {/* Drag Hint */}
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#12231B]/60 backdrop-blur-md text-[10px] text-[#FAF7F2]/90 font-medium pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#16324F]/65 backdrop-blur-md text-[10px] text-[#FFFFFF]/90 font-medium pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity">
                     Drag slider horizontally to compare
                   </div>
                 </div>
@@ -154,24 +154,24 @@ export const SmileGallery: React.FC = () => {
               {/* Case Details Column */}
               <div className="lg:col-span-5 flex flex-col justify-between text-left space-y-4">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#8C6D3B]">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[#2A9D8F]">
                     {currentItem.category}
                   </span>
-                  <h3 className="text-2xl font-serif font-bold text-[#183127] mt-1 mb-3">
+                  <h3 className="text-2xl font-serif font-bold text-[#16324F] mt-1 mb-3">
                     {currentItem.title}
                   </h3>
-                  <p className="text-sm text-[#4A574E] leading-relaxed mb-6">
+                  <p className="text-sm text-[#667085] leading-relaxed mb-6">
                     {currentItem.caseDescription}
                   </p>
 
-                  <div className="p-4 rounded-2xl bg-[#EFE8DD] border border-[#DDD0BC] text-xs space-y-1.5 text-[#3E4C42]">
+                  <div className="p-4 rounded-2xl bg-[#EAF4F7] border border-[#D5E7ED] text-xs space-y-1.5 text-[#16324F]">
                     <div className="flex justify-between">
-                      <span className="text-[#6D7D72]">Treatment Duration:</span>
-                      <strong className="text-[#183127] font-semibold">{currentItem.treatmentDuration}</strong>
+                      <span className="text-[#667085]">Treatment Duration:</span>
+                      <strong className="text-[#16324F] font-semibold">{currentItem.treatmentDuration}</strong>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#6D7D72]">Aesthetic Material:</span>
-                      <span className="text-[#183127]">Biomimetic Ceramic / Resin</span>
+                      <span className="text-[#667085]">Aesthetic Material:</span>
+                      <span className="text-[#16324F]">Biomimetic Ceramic / Resin</span>
                     </div>
                   </div>
                 </div>
@@ -185,8 +185,8 @@ export const SmileGallery: React.FC = () => {
                       onClick={() => setActiveCaseIndex(idx)}
                       className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors cursor-pointer ${
                         activeCaseIndex === idx
-                          ? 'bg-[#183127] text-[#FAF7F2] font-semibold'
-                          : 'bg-[#FAF7F2] text-[#48564D] hover:text-[#183127] border border-[#DDD0BC]'
+                          ? 'bg-[#2A9D8F] text-[#FFFFFF] font-semibold'
+                          : 'bg-[#FFFFFF] text-[#667085] hover:text-[#16324F] border border-[#D5E7ED]'
                       }`}
                     >
                       Case {idx + 1}
@@ -199,10 +199,10 @@ export const SmileGallery: React.FC = () => {
         )}
 
         {/* Mandatory Medical Disclaimer */}
-        <div className="mt-8 p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex items-start gap-3 text-xs text-amber-900 max-w-3xl">
-          <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-          <p className="leading-relaxed">
-            <strong>Clinical Disclaimer:</strong> Results vary by patient and treatment. Images are shared with appropriate patient consent and illustrative clinical intent. Treatment plans are customized after clinical evaluation by Dr XYZ.
+        <div className="mt-8 p-4 rounded-2xl bg-[#EAF4F7] border border-[#D5E7ED] flex items-start gap-3 text-xs text-[#16324F] max-w-3xl">
+          <AlertCircle className="w-4 h-4 text-[#2A9D8F] shrink-0 mt-0.5" />
+          <p className="leading-relaxed text-[#667085]">
+            <strong className="text-[#16324F]">Clinical Disclaimer:</strong> Results vary by patient and treatment. Images are shared with appropriate patient consent and illustrative clinical intent. Treatment plans are customized after clinical evaluation by Dr XYZ.
           </p>
         </div>
       </div>

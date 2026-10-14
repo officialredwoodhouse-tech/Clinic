@@ -35,6 +35,22 @@ const SERVICE_ICONS: Record<string, React.ElementType> = {
   'dentures-and-tooth-replacement': RefreshCw,
 };
 
+// Structured category mappings matching the Aetheric Dental aesthetic
+const SERVICE_CATEGORY_TAGS: Record<string, string> = {
+  'general-dentistry': 'PREVENTIVE CARE',
+  'cosmetic-dentistry': 'AESTHETIC REFINEMENT',
+  'dental-implants': 'STRUCTURAL RESTORATION',
+  'root-canal-treatment': 'ENDODONTIC THERAPY',
+  'smile-makeovers': 'FULL ARCH AESTHETICS',
+  'teeth-whitening': 'ENAMEL BRIGHTENING',
+  'braces-and-orthodontics': 'ORTHODONTIC ALIGNMENT',
+  'crowns-and-bridges': 'BIOMIMETIC PROSTHETICS',
+  'gum-treatment': 'PERIODONTAL HEALTH',
+  'wisdom-tooth-removal': 'SURGICAL PRECISION',
+  'pediatric-dentistry': 'EARLY ORAL WELLNESS',
+  'dentures-and-tooth-replacement': 'FUNCTIONAL REHABILITATION',
+};
+
 interface ServicesSectionProps {
   config: ClinicConfig;
   onSelectServiceForBooking: (serviceName: string) => void;
@@ -44,13 +60,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
 
   return (
-    <section
-      id="services"
-      className="py-24 relative overflow-hidden bg-[#EFE9DF]/50"
-    >
+    <section id="services" className="py-24 relative overflow-hidden bg-[#FFFFFF] border-b border-[#D5E7ED]">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full ambient-glow-pine -z-10" />
-      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] rounded-full ambient-glow-gold -z-10" />
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full ambient-glow-ice -z-10" />
+      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] rounded-full ambient-glow-teal -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -61,19 +74,18 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
           transition={{ duration: 0.55, ease: smoothEasing }}
           className="max-w-3xl mb-16 text-left transform-gpu"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-3">
-            Clinical Services
+          <span className="font-mono text-xs font-bold text-[#2A9D8F] tracking-widest uppercase block mb-2">
+            [ CLINICAL SERVICES ]
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#183127] tracking-tight leading-tight">
-            Complete Dental Care. <br className="hidden sm:inline" />
-            <span className="italic font-normal text-[#2A5243]">One Destination.</span>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#16324F] tracking-tight leading-tight">
+            Our Expertise
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#47544B] leading-relaxed">
-            From routine preventive check-ups to comprehensive aesthetic and restorative therapies, every treatment is delivered with modern precision and genuine comfort.
+          <p className="mt-4 text-base sm:text-lg text-[#667085] leading-relaxed">
+            From routine preventive maintenance to advanced restorative solutions, each therapy is delivered with mastery of form, light, and clinical precision.
           </p>
         </motion.div>
 
-        {/* 12 Services Staggered Grid */}
+        {/* 12 Services Structured Architectural Grid */}
         <motion.div
           variants={staggerContainerVariants}
           initial="hidden"
@@ -81,47 +93,55 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ config, onSele
           viewport={scrollViewport}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {CLINIC_SERVICES.map((service) => {
+          {CLINIC_SERVICES.map((service, idx) => {
             const Icon = SERVICE_ICONS[service.id] || Sparkles;
+            const catTag = SERVICE_CATEGORY_TAGS[service.id] || 'CLINICAL CARE';
+            const numIndex = `(${String(idx + 1).padStart(2, '0')})`;
+
             return (
               <motion.div
                 key={service.id}
                 variants={childFadeUpVariants}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                className="group relative flex flex-col justify-between p-7 rounded-3xl glass-panel hover:bg-[#FAF7F2] transition-colors duration-300 shadow-sm hover:shadow-xl hover:shadow-[#183127]/10 border border-[#E3D8C8] hover:border-[#C4B49F]"
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="group relative flex flex-col justify-between p-8 rounded-2xl bg-[#FFFFFF] hover:bg-[#EAF4F7]/40 transition-all duration-200 border border-[#D5E7ED] hover:border-[#2A9D8F] shadow-xs hover:shadow-lg hover:shadow-[#16324F]/5"
               >
                 <div>
-                  {/* Top Bar with Number & Icon */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-mono font-bold text-[#8C7E6A] group-hover:text-[#183127] transition-colors">
-                      {service.number}
-                    </span>
-                    <div className="w-11 h-11 rounded-2xl bg-[#EFE8DC] text-[#183127] flex items-center justify-center border border-[#DDD0BC] group-hover:scale-105 group-hover:bg-[#183127] group-hover:text-[#F6F3EE] transition-all duration-200">
-                      <Icon className="w-5 h-5 transition-colors" />
+                  {/* Top Bar with Number & Category Tag */}
+                  <div className="flex items-center justify-between mb-5 pb-4 border-b border-[#EAF4F7]">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs font-bold text-[#2A9D8F]">
+                        {numIndex}
+                      </span>
+                      <span className="font-mono text-[10px] font-bold text-[#667085] tracking-widest uppercase">
+                        {catTag}
+                      </span>
+                    </div>
+                    <div className="w-9 h-9 rounded-lg bg-[#EAF4F7] text-[#16324F] flex items-center justify-center border border-[#CEE3E9] group-hover:bg-[#2A9D8F] group-hover:text-[#FFFFFF] transition-colors">
+                      <Icon className="w-4 h-4" />
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-serif font-bold text-[#183127] mb-2.5 group-hover:text-[#284D3F] transition-colors">
+                  <h3 className="text-xl font-serif font-bold text-[#16324F] mb-2.5 group-hover:text-[#2A9D8F] transition-colors">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm text-[#4C5950] leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-[#667085] leading-relaxed mb-6">
                     {service.shortDesc}
                   </p>
                 </div>
 
-                {/* Card Action Button */}
-                <div className="pt-4 border-t border-[#E3D9C9] flex items-center justify-between">
+                {/* Card Action Link */}
+                <div className="pt-4 border-t border-[#EAF4F7] flex items-center justify-between">
                   <button
                     type="button"
                     onClick={() => setSelectedService(service)}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#183127] group-hover:text-[#284D3F] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold tracking-wider uppercase text-[#16324F] group-hover:text-[#2A9D8F] transition-colors cursor-pointer"
                   >
-                    <span>Explore {service.title}</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#8C6D3B]" />
+                    <span>Explore Service</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#2A9D8F]" />
                   </button>
-                  <span className="text-[11px] text-[#867B6B] font-medium">
-                    {service.category.split('&')[0]}
+                  <span className="font-mono text-[10px] text-[#667085]">
+                    {service.durationExpectation}
                   </span>
                 </div>
               </motion.div>

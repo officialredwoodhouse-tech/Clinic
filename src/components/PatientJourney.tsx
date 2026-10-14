@@ -5,10 +5,7 @@ import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollView
 
 export const PatientJourney: React.FC = () => {
   return (
-    <section
-      id="journey"
-      className="py-20 relative bg-[#EFE9DF]/60 border-y border-[#DDD0BC]/70"
-    >
+    <section id="journey" className="py-24 relative bg-[#FFFFFF] border-b border-[#D5E7ED]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -17,18 +14,18 @@ export const PatientJourney: React.FC = () => {
           transition={{ duration: 0.55, ease: smoothEasing }}
           className="max-w-3xl mb-16 text-left transform-gpu"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#8C6D3B] block mb-2">
-            The Patient Journey
+          <span className="font-mono text-xs font-bold text-[#2A9D8F] tracking-widest uppercase block mb-2">
+            [ PATIENT EXPERIENCE TIMELINE ]
           </span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#183127] tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#16324F] tracking-tight">
             Clear Steps. Predictable Outcomes.
           </h2>
-          <p className="mt-3 text-base text-[#4C5950]">
-            From your very first conversation to lasting oral wellness, here is what your experience at Dr XYZ Dental looks like.
+          <p className="mt-3 text-base sm:text-lg text-[#667085]">
+            From your initial consultation to long-term smile wellness, each phase is calibrated for calm transparency.
           </p>
         </motion.div>
 
-        {/* Horizontal Timeline */}
+        {/* Structured Horizontal Grid */}
         <motion.div
           variants={staggerContainerVariants}
           initial="hidden"
@@ -40,22 +37,26 @@ export const PatientJourney: React.FC = () => {
             <motion.div
               key={step.step}
               variants={childFadeUpVariants}
-              whileHover={{ y: -5, transition: { duration: 0.25 } }}
-              className="relative p-6 rounded-3xl glass-panel hover:bg-[#FAF7F2] transition-colors duration-200 border border-[#E3D9C9] hover:shadow-md"
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="relative p-8 rounded-2xl bg-[#EAF4F7] hover:bg-[#FFFFFF] transition-all duration-200 border border-[#D5E7ED] hover:border-[#2A9D8F] shadow-xs flex flex-col justify-between"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl font-serif font-bold text-[#183127]">
-                  {step.step}
-                </span>
-                <div className="h-0.5 flex-1 bg-gradient-to-r from-[#8C6D3B]/40 to-transparent" />
-              </div>
+              <div>
+                <div className="flex items-center justify-between mb-5 pb-4 border-b border-[#D5E7ED]/60">
+                  <span className="font-mono text-xs font-bold text-[#2A9D8F]">
+                    [ {step.step} ]
+                  </span>
+                  <span className="font-mono text-[10px] text-[#667085] uppercase tracking-wider">
+                    PHASE {step.step}
+                  </span>
+                </div>
 
-              <h3 className="text-lg font-serif font-bold text-[#183127] mb-2">
-                {step.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-[#4E5A51] leading-relaxed">
-                {step.description}
-              </p>
+                <h3 className="text-xl font-serif font-bold text-[#16324F] mb-2.5">
+                  {step.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#667085] leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </motion.div>

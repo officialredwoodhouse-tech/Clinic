@@ -2,39 +2,47 @@ import React from 'react';
 import { Cpu, HeartPulse, Sparkles, Layers } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { TRUST_PILLARS } from '../data/clinicData';
-import { smoothEasing, staggerContainerVariants, childFadeUpVariants, scrollViewport } from './SectionTransition';
+import { staggerContainerVariants, childFadeUpVariants, scrollViewport } from './SectionTransition';
 
 const ICONS = [Cpu, HeartPulse, Sparkles, Layers];
+const NUMBERS = ['(01)', '(02)', '(03)', '(04)'];
 
 export const TrustBar: React.FC = () => {
   return (
-    <section className="relative py-8 -mt-4 mb-8">
+    <section className="relative border-b border-[#D5E7ED] bg-[#EAF4F7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={scrollViewport}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#D5E7ED]"
         >
           {TRUST_PILLARS.map((pillar, idx) => {
             const Icon = ICONS[idx % ICONS.length];
+            const num = NUMBERS[idx % NUMBERS.length];
             return (
               <motion.div
                 key={pillar.title}
                 variants={childFadeUpVariants}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group p-6 rounded-3xl glass-panel transition-shadow duration-300 hover:shadow-lg hover:shadow-[#183127]/10 hover:border-[#CBBDA9]"
+                className="py-7 px-5 lg:px-6 flex flex-col justify-between group hover:bg-[#FFFFFF]/70 transition-colors duration-200"
               >
-                <div className="w-11 h-11 rounded-2xl bg-[#EFE8DD] text-[#183127] flex items-center justify-center mb-4 border border-[#DDD0BC] group-hover:scale-105 group-hover:bg-[#183127] group-hover:text-[#F7F3ED] transition-all duration-200">
-                  <Icon className="w-5 h-5 transition-colors" />
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono text-xs font-bold text-[#2A9D8F] tracking-wider">
+                      {num}
+                    </span>
+                    <div className="w-8 h-8 rounded-lg bg-[#FFFFFF] text-[#16324F] flex items-center justify-center border border-[#D5E7ED] group-hover:bg-[#2A9D8F] group-hover:text-[#FFFFFF] transition-colors">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                  </div>
+                  <h3 className="text-sm font-mono font-bold tracking-wider text-[#16324F] uppercase mb-2">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-xs text-[#667085] leading-relaxed">
+                    {pillar.description}
+                  </p>
                 </div>
-                <h3 className="text-base font-serif font-bold text-[#183127] tracking-tight mb-2">
-                  {pillar.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[#4E5B52] leading-relaxed">
-                  {pillar.description}
-                </p>
               </motion.div>
             );
           })}
